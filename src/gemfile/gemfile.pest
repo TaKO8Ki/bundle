@@ -1,0 +1,30 @@
+gemfile = { SOI ~ (statement | NEWLINE)* ~ EOI }
+
+statement = _{ source_statement | gem_statement | ruby_version | group_block | comment }
+
+source_statement = { "source" ~ ws ~ string_literal ~ NEWLINE* }
+
+gem_statement = { "gem" ~ ws ~ string_literal ~ option_part? ~ NEWLINE* }
+option_part = _{ version_option | key_value_option }
+version_option = { ws ~ "," ~ ws ~ string_literal }
+key_value_option = { ws ~ "," ~ ws ~ symbol_or_name ~ ws ~ ":" ~ ws ~ option_value }
+
+option_value = _{ string_literal | symbol_or_name | array_value }
+array_value = { "[" ~ ws ~ symbol_array_items? ~ ws ~ "]" }
+symbol_array_items = { symbol_or_name ~ (ws ~ "," ~ ws ~ symbol_or_name)* ~ ws ~ ","? }
+
+ruby_version = { "ruby" ~ ws ~ string_literal ~ NEWLINE* }
+
+group_block = { "group" ~ ws ~ symbol_or_name ~ (ws ~ "," ~ ws ~ symbol_or_name)* ~ ws ~ "do" ~ NEWLINE* ~ block_content ~ "end" ~ NEWLINE* }
+block_content = { (ws ~ statement ~ NEWLINE*)* }
+
+symbol_or_name = { ":" ~ ws ~ identifier | identifier }
+
+string_literal = ${ ("\"" ~ string_content ~ "\"") | ("'" ~ string_content ~ "'") }
+string_content = @{ (!(NEWLINE | "\"" | "'") ~ ANY)* }
+
+identifier = @{ (ASCII_ALPHA | "_") ~ (ASCII_ALPHANUMERIC | "_")* }
+
+comment = _{ "#" ~ (!NEWLINE ~ ANY)* }
+ws = _{ WHITESPACE* }
+WHITESPACE = _{ " " | "\t" }

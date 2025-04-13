@@ -2,5 +2,12 @@
 name = "bundle"
 version = "0.1.0"
 edition = "2024"
+authors = ["tako8ki"]
+description = "A Gemfile parser for Ruby projects"
 
 [dependencies]
+pest = "2.7"
+pest_derive = "2.7"
+
+[build-dependencies]
+pest_generator = "2.7"
