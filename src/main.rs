@@ -3,42 +3,23 @@ mod executor;
 mod installer;
 mod resolver;
 mod version;
+mod cli;
 
 use compact_index_client::CompactIndexClient;
 use executor::Executor;
 use installer::GemInstaller;
+use resolver::Resolver;
 use serde::Deserialize;
 use tracing_subscriber::fmt::format::FmtSpan;
+use version::{RubyVersion, parse_req};
 // use resolver::Resolver;
 
+use pubgrub::Ranges;
 use std::env;
 use std::error::Error;
 use std::path::{Path, PathBuf};
 
 use clap::Parser as _;
-
-#[derive(clap::Parser)]
-#[command(
-    name = "Bundler",
-    version = "0.1.0",
-    about = "Example CLI",
-    subcommand_required = true,
-    arg_required_else_help = true
-)]
-struct Cli {
-    #[command(subcommand)]
-    command: Option<Commands>,
-}
-
-#[derive(clap::Subcommand)]
-enum Commands {
-    Install,
-    #[clap(trailing_var_arg = true, allow_hyphen_values = true)]
-    Exec {
-        args: Vec<String>,
-    },
-    Lock,
-}
 
 #[derive(Deserialize, Debug)]
 struct Gemfile {
@@ -70,24 +51,20 @@ async fn main() -> Result<(), Box<dyn Error>> {
     use tracing_subscriber::util::SubscriberInitExt;
     use tracing_subscriber::{EnvFilter, fmt, prelude::__tracing_subscriber_SubscriberExt};
 
-    // setup tracing
     tracing_subscriber::registry()
-        .with(fmt::layer().with_span_events(FmtSpan::CLOSE).event_format(
-            tracing_subscriber::fmt::format().without_time(), // タイムスタンプを表示しない :contentReference[oaicite:0]{index=0}
-        ))
+        .with(
+            fmt::layer()
+                .with_span_events(FmtSpan::CLOSE)
+                .event_format(tracing_subscriber::fmt::format().without_time()),
+        )
         .with(EnvFilter::from_default_env())
-        // .with_span_events(FmtSpan::CLOSE)
-        // ↓ 以下でタイムスタンプを消します
-        // .event_format(
-        //     tracing_subscriber::fmt::format().without_time(), // タイムスタンプを表示しない :contentReference[oaicite:0]{index=0}
-        // )
         .init();
 
-    let cli = Cli::parse();
+    let cli = cli::Cli::parse();
 
     let gemfile = parse_gemfile();
 
-    CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle"))?
+    let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle"))?
         .resolve_dependencies(
             gemfile
                 .dependencies
@@ -97,20 +74,53 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    match &cli.command {
-        Some(Commands::Install) => (),
-        Some(Commands::Exec { args }) => {
+    println!("gems: {}", gems.len());
+
+    let mut resolver = Resolver::new();
+
+    for (gem, versions) in gems {
+        for v in versions {
+            let constraints: Vec<(String, Ranges<RubyVersion>)> = v
+                .dependencies
+                .iter()
+                .map(|dep| (dep.name.clone(), dep.requirement.clone()))
+                .collect();
+            resolver.add_dependencies(gem.clone(), v.version, constraints);
+        }
+    }
+    let root_pkg = "root".to_string();
+    let root_ver = RubyVersion::new(0, 0, 0);
+    let root_constraints: Vec<(String, Ranges<RubyVersion>)> = gemfile
+        .dependencies
+        .into_iter()
+        .map(|gem| {
+            // semver::VersionReq から VS へ
+            let vs = match gem.requirement {
+                Some(req) => parse_req(&req, ","), // :contentReference[oaicite:1]{index=1}
+                None => parse_req("*", ","),
+            };
+            (gem.name, vs)
+        })
+        .collect();
+    resolver.add_dependencies(root_pkg, root_ver, root_constraints);
+
+    let solution = resolver.resolve().expect("dependency resolution failed");
+
+    for (pkg, ver) in &solution {
+        println!("  - {} @ {}", pkg, ver);
+    }
+
+    match &cli.command() {
+        Some(cli::Command::Install) => (),
+        Some(cli::Command::Exec { args }) => {
             Executor::new(args.clone()).exec()?;
             return Ok(());
         }
-        Some(Commands::Lock) => {
+        Some(cli::Command::Lock) => {
             return Ok(());
         }
         None => {}
     }
-
-    // デフォルトのパス
-    let gemfile_path = "Gemfile";
 
     // Bundlerのディレクトリ構造
     let bundle_dir = dirs::home_dir()

@@ -10,7 +10,10 @@ use std::collections::{HashMap, HashSet, VecDeque};
 use std::fs::{self, File, read_dir};
 use std::io::{self, BufRead, BufReader, Read, Write};
 use std::path::{Path, PathBuf};
+use std::sync::Arc;
 use thiserror::Error;
+use tokio::sync::Semaphore;
+use tokio::task::JoinHandle;
 use tracing::{Level, debug, instrument};
 use url::Url;
 
@@ -50,10 +53,12 @@ pub struct GemDependency {
     pub requirement: Ranges<RubyVersion>,
 }
 
+#[derive(Debug, Clone)]
 pub struct CompactIndexClient {
     base_url: Url,
     cache_dir: PathBuf,
     http_client: Client,
+    limiter: Arc<Semaphore>,
 }
 
 impl CompactIndexClient {
@@ -74,6 +79,7 @@ impl CompactIndexClient {
             base_url: url,
             cache_dir,
             http_client: Client::new(),
+            limiter: Arc::new(Semaphore::new(num_cpus::get())),
         })
     }
 
@@ -112,49 +118,71 @@ impl CompactIndexClient {
         root_gems: Vec<String>,
     ) -> Result<HashMap<String, Vec<GemVersion>>> {
         use futures::stream::StreamExt;
+        // Ensure we have a fresh `/versions` file – *serial* (only once).
+        self.ensure_versions_fresh().await?;
 
-        // self.ensure_versions_fresh().await?;
-
+        // Work‑list algorithm, but each round is processed in parallel.
         let mut graph: HashMap<String, Vec<GemVersion>> = HashMap::new();
         let mut visited: HashSet<String> = HashSet::new();
         let mut queue: VecDeque<String> = root_gems.iter().cloned().collect();
-        let mut tasks: FuturesUnordered<_> = FuturesUnordered::new();
-        let max_tasks = num_cpus::get();
+        let mut tasks: FuturesUnordered<JoinHandle<Result<(String, Vec<GemVersion>)>>> =
+            FuturesUnordered::new();
+        // Shared Arc for all spawned tasks
+        let shared_client = Arc::new(self.clone());
 
-        loop {
-            // Fill the window – **single point where `tasks.push` happens**
-            while tasks.len() < max_tasks {
-                match queue.pop_front() {
-                    Some(name) if !visited.contains(&name) => {
-                        let client = &self;
-                        let n = name.clone();
-                        tasks.push(async move {
-                            let vers = client.info(&n).await?;
-                            Ok::<_, CompactIndexError>((n, vers))
-                        });
-                    }
-                    _ => break,
-                }
+        // Function to spawn a fetch task; ONLY place where spawn happens
+        let spawn_fetch = |client: Arc<CompactIndexClient>, gem: String| -> JoinHandle<_> {
+            tokio::spawn(async move {
+                let versions = client.info(&gem, true).await?;
+                Ok::<_, CompactIndexError>((gem, versions))
+            })
+        };
+
+        // initial fill (schedule unique downloads)
+        let mut scheduled = HashSet::<String>::new();
+        while let Some(name) = queue.pop_front() {
+            if !visited.contains(&name) && !scheduled.contains(&name) {
+                scheduled.insert(name.clone());
+                tasks.push(spawn_fetch(Arc::clone(&shared_client), name));
             }
-
-            // Break if no active tasks and nothing queued.
-            if tasks.is_empty() {
+            if tasks.len() >= shared_client.limiter.available_permits() {
                 break;
             }
+        }
 
-            // Await one completed task.
-            let (gem_name, versions) = tasks.next().await.expect("stream non-empty")?;
-            visited.insert(gem_name.clone());
-            for gv in &versions {
-                for dep in &gv.dependencies {
-                    if !visited.contains(&dep.name) {
-                        queue.push_back(dep.name.clone());
+        // main loop
+        while let Some(out) = tasks.next().await {
+            let (gem, versions) = out.unwrap().unwrap();
+            if visited.insert(gem.clone()) {
+                graph.insert(gem, versions.clone());
+            }
+            for v in &versions {
+                for d in &v.dependencies {
+                    if !visited.contains(&d.name) {
+                        queue.push_back(d.name.clone());
                     }
                 }
             }
-            graph.insert(gem_name, versions);
+
+            // refill window
+            while tasks.len() < shared_client.limiter.available_permits() {
+                if let Some(n) = queue.pop_front() {
+                    if !visited.contains(&n) && !scheduled.contains(&n) {
+                        scheduled.insert(n.clone());
+                        tasks.push(spawn_fetch(Arc::clone(&shared_client), n));
+                    }
+                } else {
+                    break;
+                }
+            }
         }
         Ok(graph)
+    }
+
+    async fn ensure_versions_fresh(&self) -> Result<()> {
+        let url = self.base_url.join("versions")?;
+        let path = self.cache_dir.join("versions");
+        self.update_cache(&url, &path, &path).await
     }
 
     pub async fn versions(&self, gems: Vec<String>) -> Result<HashMap<String, Vec<RubyVersion>>> {
@@ -173,16 +201,27 @@ impl CompactIndexClient {
     }
 
     #[instrument(level = Level::DEBUG, skip_all)]
-    pub async fn info(&self, gem_name: &str) -> Result<Vec<GemVersion>> {
+    pub async fn info(&self, gem_name: &str, update: bool) -> Result<Vec<GemVersion>> {
         let info_path = self.cache_dir.join("info").join(gem_name);
         let info_etag_path = self.cache_dir.join("info-etags").join(gem_name);
         let info_url = self.base_url.join(&format!("info/{}", gem_name))?;
 
-        debug!("bbbbbbbbbbbbbbbbbbbb: {}", gem_name);
+        if update {
+            // TODO: It's possible to return bytes or File from this function and reuse it in `CompactIndexClient::info`.
+            // It can reduce overlapped I/O.
+            self.update_cache(&info_url, &info_path, &info_etag_path)
+                .await?;
+        }
 
-        self.update_cache(&info_url, &info_path, &info_etag_path)
-            .await?;
+        // Check if the info file exists
+        // info file is sometimes empty like https://rubygems.org/info/active_support.
+        // If it is empty, we don't create a new file.
+        // We just return an empty vector.
+        if !info_path.exists() {
+            return Ok(vec![]);
+        }
 
+        // This line would be unnecessary if update_cache returns a file or bytes, which info APi returns.
         let file = File::open(info_path).expect("Failed to open info file");
         let mut result = Vec::new();
 
@@ -199,7 +238,6 @@ impl CompactIndexClient {
             let ver_str = parts.next().unwrap();
             let deps_str = parts.next().unwrap_or("");
             let rv = RubyVersion::parse(ver_str);
-            // let mut deps_vec = Vec::new();
 
             let mut dependencies = Vec::new();
 
@@ -212,8 +250,10 @@ impl CompactIndexClient {
                     let name = dep_entry[..idx].to_string();
 
                     let req_str = dep_entry[idx + 1..].trim();
+                    if req_str == "~>" {
+                        println!("raw: {raw}, gem_name: {gem_name}");
+                    }
                     let req = parse_req(req_str, "&");
-                    // deps_vec.push((name, req));
                     dependencies.push(GemDependency {
                         name: name.to_string(),
                         requirement: req,
@@ -231,47 +271,57 @@ impl CompactIndexClient {
     }
 
     #[instrument(level = Level::DEBUG, skip_all)]
-    async fn update_cache(&self, url: &Url, path: &Path, etag_cache_path: &Path) -> Result<()> {
+    async fn update_cache(&self, url: &Url, cache_path: &Path, etag_path: &Path) -> Result<()> {
         let mut headers = HeaderMap::new();
-        if path.exists() {
-            if let Some(etag) = self.read_etag(path)? {
+
+        if etag_path.exists() {
+            if let Some(etag) = self.read_etag(etag_path)? {
                 headers.insert(IF_NONE_MATCH, HeaderValue::from_str(&etag).unwrap());
             }
-            if let Ok(meta) = fs::metadata(path) {
-                if meta.len() > 0 {
-                    headers.insert(
-                        RANGE,
-                        HeaderValue::from_str(&format!("bytes={}-", meta.len() - 1)).unwrap(),
-                    );
+
+            if let Ok(metadata) = fs::metadata(etag_path) {
+                if metadata.len() > 0 {
+                    let range = format!("bytes={}-", metadata.len() - 1);
+                    headers.insert(RANGE, HeaderValue::from_str(&range).unwrap());
                 }
             }
         }
-        let resp = self
+
+        let response = self
             .http_client
             .get(url.clone())
             .headers(headers)
             .send()
             .await?;
-        match resp.status() {
-            reqwest::StatusCode::NOT_MODIFIED => Ok(()),
-            s if s.is_success() => {
-                self.process_response(resp, path, etag_cache_path).await?;
-                Ok(())
-            }
-            s => Err(CompactIndexError::Other(format!("HTTP {} for {}", s, url))),
+
+        if response.status() == reqwest::StatusCode::NOT_MODIFIED {
+            return Ok(());
         }
+
+        if response.status().is_success() {
+            self.process_response(response, cache_path, etag_path)
+                .await?;
+        } else {
+            return Err(CompactIndexError::Other(format!(
+                "HTTP error: {} for URL: {}",
+                response.status(),
+                url
+            )));
+        }
+
+        Ok(())
     }
 
     async fn process_response(
         &self,
         response: Response,
         cache_path: &Path,
-        etag_cache_path: &Path,
+        etag_path: &Path,
     ) -> Result<()> {
         let is_partial = response.status() == reqwest::StatusCode::PARTIAL_CONTENT;
 
         if let Some(etag) = response.headers().get(ETAG) {
-            self.write_etag(etag_cache_path, etag.to_str().unwrap())?;
+            self.write_etag(etag_path, etag.to_str().unwrap())?;
         }
 
         let body = response.bytes().await?;
@@ -283,6 +333,13 @@ impl CompactIndexClient {
 
             file.write_all(&body[1..])?;
         } else {
+            // If the body is empty, we don't create a new file.
+            if let Ok(text) = std::str::from_utf8(&body) {
+                let mut lines = text.lines();
+                if lines.next() == Some("---") && lines.next().is_none() {
+                    return Ok(());
+                }
+            }
             let mut file = File::create(cache_path)?;
             file.write_all(&body)?;
         }
@@ -341,4 +398,27 @@ fn parse_version<'a>(
         }
     }
     map
+}
+
+#[cfg(test)]
+mod tests {
+    use std::{
+        fs::File,
+        io::{BufRead, BufReader},
+        path::PathBuf,
+    };
+
+    #[test]
+    fn test_open_file() {
+        let file = File::open(PathBuf::from(
+            ".newbundle/cache/compact_index/rubygems.org.443.63ce7be7/info/aws-sdk-emrserverlesswebservice",
+        ))
+        .expect("Failed to open info file");
+        let mut lines = BufReader::new(file).lines().flatten();
+        let line = lines.next().unwrap();
+        assert_eq!(line, "---");
+        let line = lines.next().unwrap();
+        assert_eq!(line, "\n");
+        let line = lines.next().unwrap();
+    }
 }

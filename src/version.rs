@@ -88,7 +88,7 @@ impl std::fmt::Display for RubyVersion {
 }
 
 impl RubyVersion {
-    fn new(major: u64, minor: u64, patch: u64) -> Self {
+    pub fn new(major: u64, minor: u64, patch: u64) -> Self {
         RubyVersion {
             segments: vec![
                 Segment::Numeric(major),
@@ -232,6 +232,10 @@ pub fn parse_req(text: &str, separator: &str) -> Ranges<RubyVersion> {
                     next = next.bump();
                 } else {
                     // single-segment case: bump major
+                    // if next.segments.len() == 0 {
+                    //     println!("Parsed version: {}", text);
+                    // }
+
                     if let Segment::Numeric(maj) = &mut next.segments[0] {
                         *maj += 1;
                     }

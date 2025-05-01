@@ -1,5 +1,6 @@
 use pubgrub::{
     Dependencies, DependencyConstraints, DependencyProvider, OfflineDependencyProvider, Ranges,
+    resolve,
 };
 use tracing::{Level, error, instrument};
 // use pubgrub::SemanticVersion;
@@ -16,7 +17,19 @@ pub struct Resolver {
 }
 
 impl Resolver {
-    pub fn resolve(&self) {}
+    pub fn new() -> Self {
+        Resolver {
+            dependency_provider: OfflineDependencyProvider::new(),
+        }
+    }
+
+    pub fn resolve(&self) -> anyhow::Result<Vec<(String, RubyVersion)>> {
+        let root_pkg = "root".to_string();
+        let root_ver = RubyVersion::new(0, 0, 0);
+        Ok(resolve(&self.dependency_provider, root_pkg, root_ver)?
+            .into_iter()
+            .collect())
+    }
 
     #[instrument(level = Level::DEBUG, skip_all)]
     pub fn get_dependencies(
@@ -37,7 +50,15 @@ impl Resolver {
         }
     }
 
-    fn add_root_dependencies() {}
+    pub fn add_dependencies(
+        &mut self,
+        gem: String,
+        version: RubyVersion,
+        constraints: Vec<(String, Ranges<RubyVersion>)>,
+    ) {
+        self.dependency_provider
+            .add_dependencies(gem, version, constraints);
+    }
 }
 
 // use crate::compact_index_client::{CompactIndexClient, GemDependency, GemVersion};
