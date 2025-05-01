@@ -1,0 +1,25 @@
+---
+0.1.0 graphql:~> 1.7,rails:~> 5.0|checksum:a4dd0c00c718252bb2fd4bea95df6140c9ef699bdd8542c4b3e4b2adfb1fa49c
+1.0.0 graphql:~> 1.7,rails:~> 5.0|checksum:92782e91386ee30e1269c17b103761e12e28698033c7a3b79d541e89b1abcc1c
+2.0.0.alpha.1 graphql:~> 1.7,rails:~> 5.0|checksum:137fd6f06048ac7f0caa2f7cb16320fcdb24809d9f33e462ddc45233d126577c,rubygems:> 1.3.1
+2.0.0.alpha.2 graphql:~> 1.7,rails:~> 5.0|checksum:606b45f988e7ef8613be609c8203c932f7b39db01e2118bc4e63298226127aa4,rubygems:> 1.3.1
+2.0.0.alpha.3 graphql:~> 1.7,rails:~> 5.0|checksum:defee239981561b75268a11ad53ebce26e1790f7f242d3b6c2d95f1bd49ec7bf,rubygems:> 1.3.1
+2.0.0.alpha.4 graphql:~> 1.7,rails:~> 5.0|checksum:a10d4db5fc147f028119b5d20b536a2cf92ffb10b45514f61d2dbe3cace862f0,rubygems:> 1.3.1
+2.0.0.alpha.5 graphql:~> 1.7,rails:~> 5.0|checksum:71a7f428e53b226e3591a33592e136aca8b3c2232dd4e82b400108e0aa4f2a59,rubygems:> 1.3.1
+2.0.0.alpha.6 graphql:~> 1.7,rails:>= 4.2|checksum:aa28b341bbb1bba3ed911db2fae6fde119e658b0f5a9cc7e19173527950020a7,rubygems:> 1.3.1
+2.0.0.beta.1 graphql:~> 1.7,rails:>= 4.2|checksum:a6a0776e280d489de429f7671a3c64ae41fc28a034cc034cba4bfe29cfd379df,rubygems:> 1.3.1
+2.0.0.beta.2 graphql:~> 1.7,rails:>= 4.2|checksum:94434f0daee8897ca5b7796478dd69ba76f78b72dc02e08c7e66652075dbccac,rubygems:> 1.3.1
+2.0.0.beta.3 graphql:>= 1.8,rails:>= 4.2|checksum:ca16c1d4f7eb43e9f27ab5a23fa7aad90b7c0784ae126e48d6782e16fd953166,rubygems:> 1.3.1
+2.0.0 graphql:>= 1.8,rails:>= 4.2|checksum:2b472108b690afd3387240a370136d10a7113a1bf7e6d5429eaa8c8c2207d4c1
+2.0.1 graphql:>= 1.8,rails:>= 4.2|checksum:23bc5433a7f2341476c0239a4e8f84aa4f0be98f06afda8369b1cf83b5f17099
+2.0.2 graphql:>= 1.8,rails:>= 4.2|checksum:c383945da26e66d5f4cb5ef41a04311cadad2e1a7b8c59d75b19fe5a13246576
+2.0.3 graphql:>= 1.8,rails:>= 4.2|checksum:494300986a8270b15e069727a608a8fbc3b128eb1dc419dc72246038b5054cd2
+2.0.4 actionpack:>= 4.2,graphql:>= 1.8|checksum:17b21dda6bb37623a0ff851de50e35ab2272b5010985e0eb2b4db46696fde920
+2.0.5 actionpack:>= 4.2,graphql:>= 1.8|checksum:a20b4a943702c861935cc0b35af5c1d0786f50e1b901a04b0c83f0191e7a2320
+2.1.0 actionpack:>= 4.2,graphql:>= 1.8|checksum:e5f3c9dda0c2ca775d007072742b98d517dfd91a667111fedbcdc94dfabd904e
+2.1.1 actionpack:~> 6.1,graphql:>= 1.8|checksum:5fca8e51326a8635f495059125598ef286b34256dd0697c208e9ad573a8fe1b0
+2.1.2 activesupport:>= 7.0.3.1,graphql:>= 1.8,rack:>= 2.2.1|checksum:7329cb7270cd1425e4afe74b61ca36605f0f6f26752243d49e93650b377aafd0
+2.1.3 actionpack:>= 7.0.3.1,graphql:>= 1.8|checksum:12c5b23b740b8132b3c362abbb19293aa64fd7bdbc106bcd9f337c6425dbb838
+2.1.4 actionpack:>= 6.1.6,graphql:>= 1.8|checksum:8da71e38a87ac332bfa1bd4bbb4c9ee1f1681219bf14d2423fdf778cc154d7eb
+2.1.5 actionpack:>= 6.1.6,graphql:>= 1.8|checksum:0f66bea96bdf7ce8b7278712ebafc8a26b82864ea6541213b58d9b3f673413a5
+2.1.6 actionpack:>= 6.1.6,graphql:>= 1.8|checksum:dcec4072258e6518b0b82e03b485efbddde946813543c14184fc81952d6bcdb2

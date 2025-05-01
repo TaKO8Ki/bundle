@@ -1,0 +1,3961 @@
+{
+  "dependencies": [
+    {
+      "name": "rails",
+      "requirement": "~> 7.0.8.7",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "mutex_m",
+      "requirement": "~> 0.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "drb",
+      "requirement": "~> 2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "bootsnap",
+      "requirement": "~> 1.18.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "openssl",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-secret_detection",
+      "requirement": "< 1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "responders",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sprockets",
+      "requirement": "~> 3.7.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sprockets-rails",
+      "requirement": "~> 3.5.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "view_component",
+      "requirement": "~> 3.21.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pg",
+      "requirement": "~> 1.5.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rugged",
+      "requirement": "~> 1.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "faraday",
+      "requirement": "~> 2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "faraday-retry",
+      "requirement": "~> 2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "logger",
+      "requirement": "~> 1.6.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "marginalia",
+      "requirement": "~> 1.11.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "declarative_policy",
+      "requirement": "~> 1.1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "coverband",
+      "requirement": "= 6.1.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "devise",
+      "requirement": "~> 4.9.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "bcrypt",
+      "requirement": "~> 3.1, >= 3.1.14",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "doorkeeper",
+      "requirement": "~> 5.8, >= 5.8.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "doorkeeper-openid_connect",
+      "requirement": "~> 1.8.10",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "doorkeeper-device_authorization_grant",
+      "requirement": "~> 1.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rexml",
+      "requirement": "~> 3.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-saml",
+      "requirement": "~> 1.18",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-saml",
+      "requirement": "~> 2.2.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth",
+      "requirement": "~> 2.1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-auth0",
+      "requirement": "~> 3.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-azure-activedirectory-v2",
+      "requirement": "~> 2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-alicloud",
+      "requirement": "~> 3.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-github",
+      "requirement": "= 2.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-google-oauth2",
+      "requirement": "~> 1.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-oauth2-generic",
+      "requirement": "~> 0.2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-shibboleth-redux",
+      "requirement": "~> 2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth_openid_connect",
+      "requirement": "~> 0.8.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "openid_connect",
+      "requirement": "~> 2.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "omniauth-atlassian-oauth2",
+      "requirement": "~> 0.2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack-oauth2",
+      "requirement": "~> 2.2.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "jwt",
+      "requirement": "~> 2.9.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gssapi",
+      "requirement": "~> 1.3.1",
+      "groups": [
+        "kerberos"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "timfel-krb5-auth",
+      "requirement": "~> 0.8",
+      "groups": [
+        "kerberos"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "recaptcha",
+      "requirement": "~> 5.12",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "akismet",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "invisible_captcha",
+      "requirement": "~> 2.1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "devise-two-factor",
+      "requirement": "~> 4.1.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rqrcode",
+      "requirement": "~> 2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "validates_hostname",
+      "requirement": "~> 1.0.13",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rubyzip",
+      "requirement": "~> 2.3.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "acme-client",
+      "requirement": "~> 2.0.19",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "browser",
+      "requirement": "~> 5.3.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gpgme",
+      "requirement": "~> 2.0.24",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab_omniauth-ldap",
+      "requirement": "~> 2.2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "net-ldap",
+      "requirement": "~> 0.17.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape",
+      "requirement": "~> 2.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape-entity",
+      "requirement": "~> 1.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape-swagger",
+      "requirement": "~> 2.1.2",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape-swagger-entity",
+      "requirement": "~> 0.5.5",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape-path-helpers",
+      "requirement": "~> 2.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack-cors",
+      "requirement": "~> 2.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "graphql-docs",
+      "requirement": "~> 5.0.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "apollo_upload_server",
+      "requirement": "~> 2.1.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ffaker",
+      "requirement": "~> 2.24",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "hashie",
+      "requirement": "~> 5.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "kaminari",
+      "requirement": "~> 1.2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "mini_magick",
+      "requirement": "~> 4.12",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-storage_v1",
+      "requirement": "~> 0.29",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-cloud-storage",
+      "requirement": "~> 1.45.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-core",
+      "requirement": "~> 0.11.0, >= 0.11.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-compute_v1",
+      "requirement": "~> 0.57.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-container_v1",
+      "requirement": "~> 0.43.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-container_v1beta1",
+      "requirement": "~> 0.43.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-cloudbilling_v1",
+      "requirement": "~> 0.22.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-cloudresourcemanager_v1",
+      "requirement": "~> 0.31.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-iam_v1",
+      "requirement": "~> 0.36.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-serviceusage_v1",
+      "requirement": "~> 0.28.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-sqladmin_v1beta4",
+      "requirement": "~> 0.41.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-apis-androidpublisher_v3",
+      "requirement": "~> 0.34.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "googleauth",
+      "requirement": "~> 1.8.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-cloud-artifact_registry-v1",
+      "requirement": "~> 0.11.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-cloud-compute-v1",
+      "requirement": "~> 2.6.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "seed-fu",
+      "requirement": "~> 2.3.7",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "elasticsearch-model",
+      "requirement": "~> 7.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "elasticsearch-rails",
+      "requirement": "~> 7.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "elasticsearch-api",
+      "requirement": "= 7.17.11",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "aws-sdk-core",
+      "requirement": "~> 3.215.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "aws-sdk-cloudformation",
+      "requirement": "~> 1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "aws-sdk-s3",
+      "requirement": "~> 1.177.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "faraday-typhoeus",
+      "requirement": "~> 1.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "faraday_middleware-aws-sigv4",
+      "requirement": "~> 1.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "typhoeus",
+      "requirement": "~> 1.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "html-pipeline",
+      "requirement": "~> 2.14.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "deckar01-task_list",
+      "requirement": "= 2.3.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-markup",
+      "requirement": "~> 2.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "commonmarker",
+      "requirement": "~> 0.23.10",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "kramdown",
+      "requirement": "~> 2.5.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "org-ruby",
+      "requirement": "~> 0.9.12",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "creole",
+      "requirement": "~> 0.5.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "wikicloth",
+      "requirement": "= 0.8.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "asciidoctor",
+      "requirement": "~> 2.0.18",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "asciidoctor-include-ext",
+      "requirement": "~> 0.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "asciidoctor-plantuml",
+      "requirement": "~> 0.0.16",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "asciidoctor-kroki",
+      "requirement": "~> 0.10.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rouge",
+      "requirement": "~> 4.5.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "truncato",
+      "requirement": "~> 0.7.13",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "nokogiri",
+      "requirement": "~> 1.18",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-glfm-markdown",
+      "requirement": "~> 0.0.29",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "tanuki_emoji",
+      "requirement": "~> 0.13",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "unicode-emoji",
+      "requirement": "~> 4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "icalendar",
+      "requirement": "~> 2.10.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "diffy",
+      "requirement": "~> 3.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack",
+      "requirement": "~> 2.2.9",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack-timeout",
+      "requirement": "~> 0.7.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "puma",
+      "requirement": "= 6.5.0",
+      "groups": [
+        "puma"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sd_notify",
+      "requirement": "~> 0.1.0",
+      "groups": [
+        "puma"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "state_machines-activerecord",
+      "requirement": "~> 0.8.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sidekiq-cron",
+      "requirement": "~> 1.12.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "fugit",
+      "requirement": "~> 1.11.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "httparty",
+      "requirement": "~> 0.22.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rainbow",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-progressbar",
+      "requirement": "~> 1.10",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "re2",
+      "requirement": "~> 2.15",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "semver_dialects",
+      "requirement": "~> 3.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "version_sorter",
+      "requirement": "~> 2.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "js_regex",
+      "requirement": "~> 3.8",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "device_detector",
+      "requirement": ">= 0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "redis",
+      "requirement": "~> 5.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "redis-clustering",
+      "requirement": "~> 5.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "connection_pool",
+      "requirement": "~> 2.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "redis-actionpack",
+      "requirement": "~> 5.5.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "jira-ruby",
+      "requirement": "~> 2.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "atlassian-jwt",
+      "requirement": "~> 0.2.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "slack-messenger",
+      "requirement": "~> 2.3.5",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-fogbugz",
+      "requirement": "~> 0.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "circuitbox",
+      "requirement": "= 2.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sanitize",
+      "requirement": "~> 6.0.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "babosa",
+      "requirement": "~> 2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "loofah",
+      "requirement": "~> 2.24.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "licensee",
+      "requirement": "~> 9.16",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "charlock_holmes",
+      "requirement": "~> 0.7.9",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-magic",
+      "requirement": "~> 0.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "fast_blank",
+      "requirement": "~> 1.0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-chronic",
+      "requirement": "~> 0.10.5",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab_chronic_duration",
+      "requirement": "~> 0.12",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack-proxy",
+      "requirement": "~> 0.7.7",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "cssbundling-rails",
+      "requirement": "= 1.4.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "terser",
+      "requirement": "= 1.0.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "addressable",
+      "requirement": "~> 2.8",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gon",
+      "requirement": "~> 6.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "request_store",
+      "requirement": "~> 1.7.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "base32",
+      "requirement": "~> 0.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-license",
+      "requirement": "~> 2.6",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rack-attack",
+      "requirement": "~> 6.7.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sentry-ruby",
+      "requirement": "~> 5.22.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sentry-rails",
+      "requirement": "~> 5.22.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sentry-sidekiq",
+      "requirement": "~> 5.22.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pg_query",
+      "requirement": "~> 6.1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "premailer-rails",
+      "requirement": "~> 1.12.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-labkit",
+      "requirement": "~> 0.37.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "thrift",
+      "requirement": ">= 0.16.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rails-i18n",
+      "requirement": "~> 7.0, >= 7.0.9",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gettext_i18n_rails",
+      "requirement": "~> 1.13.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gettext",
+      "requirement": "~> 3.5, >= 3.5.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "batch-loader",
+      "requirement": "~> 2.0.5",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "tty-prompt",
+      "requirement": "~> 0.23",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "peek",
+      "requirement": "~> 1.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "snowplow-tracker",
+      "requirement": "~> 0.8.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "webrick",
+      "requirement": "~> 1.8.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "prometheus-client-mmap",
+      "requirement": "~> 1.2.8",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "async",
+      "requirement": "~> 2.23.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-security_report_schemas",
+      "requirement": "= 0.1.2.min15.0.0.max15.2.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-sdk",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-exporter-otlp",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-active_support",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-action_pack",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-active_job",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-active_record",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-action_view",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-aws_sdk",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-http",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-concurrent_ruby",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-ethon",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-excon",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-faraday",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-grape",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-graphql",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-http_client",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-net_http",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-pg",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-rack",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-rails",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-rake",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-redis",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "opentelemetry-instrumentation-sidekiq",
+      "requirement": ">= 0",
+      "groups": [
+        "opentelemetry"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "warning",
+      "requirement": "~> 1.5.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "lefthook",
+      "requirement": "~> 1.11.0",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rubocop",
+      "requirement": ">= 0",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "solargraph",
+      "requirement": "~> 0.47.2",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "letter_opener_web",
+      "requirement": "~> 3.0.0",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "lookbook",
+      "requirement": "~> 2.3",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "better_errors",
+      "requirement": "~> 2.10.1",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sprite-factory",
+      "requirement": "~> 1.7",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "listen",
+      "requirement": "~> 3.7",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-lsp",
+      "requirement": "~> 0.23.0",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-lsp-rails",
+      "requirement": "~> 0.3.6",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ruby-lsp-rspec",
+      "requirement": "~> 0.1.10",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gdk-toogle",
+      "requirement": "~> 0.9, >= 0.9.5",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "git",
+      "requirement": "~> 1.8",
+      "groups": [
+        "development"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "deprecation_toolkit",
+      "requirement": "~> 1.5.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "bullet",
+      "requirement": "~> 7.2.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "parser",
+      "requirement": "= 3.3.7.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pry-byebug",
+      "requirement": ">= 0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pry-rails",
+      "requirement": "~> 0.3.9",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pry-shell",
+      "requirement": "~> 0.6.4",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "awesome_print",
+      "requirement": ">= 0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "database_cleaner-active_record",
+      "requirement": "~> 2.2.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rspec-rails",
+      "requirement": "~> 7.0.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "factory_bot_rails",
+      "requirement": "~> 6.4.3",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "minitest",
+      "requirement": "~> 5.11.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "spring",
+      "requirement": "~> 4.3.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "spring-commands-rspec",
+      "requirement": "~> 1.0.4",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-styles",
+      "requirement": "~> 13.1.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "benchmark-ips",
+      "requirement": "~> 2.14.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "benchmark-memory",
+      "requirement": "~> 0.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "influxdb-client",
+      "requirement": "~> 3.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "knapsack",
+      "requirement": "~> 4.0.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "crystalball",
+      "requirement": "~> 0.7.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "test_file_finder",
+      "requirement": "~> 0.3.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "simple_po_parser",
+      "requirement": "~> 1.1.6",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "png_quantizator",
+      "requirement": "~> 0.2.1",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "parallel",
+      "requirement": "~> 1.19",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sigdump",
+      "requirement": "~> 0.2.4",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "pact",
+      "requirement": "~> 1.64",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "vite_rails",
+      "requirement": "~> 3.0.17",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "vite_ruby",
+      "requirement": "~> 3.9.0",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "yard",
+      "requirement": "~> 0.9",
+      "groups": [
+        "development",
+        "test"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-dangerfiles",
+      "requirement": "~> 4.8.0",
+      "groups": [
+        "development",
+        "test",
+        "danger"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "simplecov",
+      "requirement": "~> 0.22",
+      "groups": [
+        "development",
+        "test",
+        "coverage"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "simplecov-lcov",
+      "requirement": "~> 0.8.0",
+      "groups": [
+        "development",
+        "test",
+        "coverage"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "simplecov-cobertura",
+      "requirement": "~> 2.1.0",
+      "groups": [
+        "development",
+        "test",
+        "coverage"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "undercover",
+      "requirement": "~> 0.6.0",
+      "groups": [
+        "development",
+        "test",
+        "coverage"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "license_finder",
+      "requirement": "~> 7.0",
+      "groups": [
+        "development",
+        "test",
+        "omnibus"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "octokit",
+      "requirement": "~> 9.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "faraday-multipart",
+      "requirement": "~> 1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-mail_room",
+      "requirement": "~> 0.0.24",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "email_reply_trimmer",
+      "requirement": "~> 0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "html2text",
+      "requirement": ">= 0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "stackprof",
+      "requirement": "~> 0.2.26",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "rbtrace",
+      "requirement": "~> 0.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "memory_profiler",
+      "requirement": "~> 1.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "activerecord-explain-analyze",
+      "requirement": "~> 0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "oauth2",
+      "requirement": "~> 2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "health_check",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "vmstat",
+      "requirement": "~> 2.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "sys-filesystem",
+      "requirement": "~> 1.4.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "net-ntp",
+      "requirement": ">= 0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ssh_data",
+      "requirement": "~> 1.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "spamcheck",
+      "requirement": "~> 1.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitaly",
+      "requirement": "~> 17.8.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-kas-grpc",
+      "requirement": "~> 17.9.0.pre.rc2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grpc",
+      "requirement": "= 1.63.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "google-protobuf",
+      "requirement": "~> 3.25, >= 3.25.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "toml-rb",
+      "requirement": "~> 2.2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "flipper",
+      "requirement": "~> 0.28.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "flipper-active_record",
+      "requirement": "~> 0.28.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "flipper-active_support_cache_store",
+      "requirement": "~> 0.28.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "unleash",
+      "requirement": "~> 3.2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-experiment",
+      "requirement": "~> 0.9.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "lograge",
+      "requirement": "~> 0.5",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "grape_logging",
+      "requirement": "~> 1.8, >= 1.8.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-net-dns",
+      "requirement": "~> 0.10.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "countries",
+      "requirement": "~> 4.0.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "retriable",
+      "requirement": "~> 3.1.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "lru_redux",
+      "requirement": ">= 0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "mail",
+      "requirement": "= 2.8.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "lockbox",
+      "requirement": "~> 1.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "valid_email",
+      "requirement": "~> 0.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "jsonb_accessor",
+      "requirement": "~> 1.4",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "json",
+      "requirement": "~> 2.10.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "json_schemer",
+      "requirement": "~> 2.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "oj",
+      "requirement": "~> 3.16.0, >= 3.16.10",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "oj-introspect",
+      "requirement": "~> 0.8",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "multi_json",
+      "requirement": "~> 1.14.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "yajl-ruby",
+      "requirement": "~> 1.4.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "webauthn",
+      "requirement": "~> 3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ipaddress",
+      "requirement": "~> 0.8.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "parslet",
+      "requirement": "~> 1.8",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "ed25519",
+      "requirement": "~> 1.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "cvss-suite",
+      "requirement": "~> 3.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "arr-pm",
+      "requirement": "~> 0.0.12",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "devfile",
+      "requirement": "~> 0.4.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "app_store_connect",
+      "requirement": ">= 0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "telesignenterprise",
+      "requirement": "~> 2.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "net-protocol",
+      "requirement": "~> 0.1.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "nkf",
+      "requirement": "~> 0.2.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "net-http",
+      "requirement": "= 0.6.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "uri",
+      "requirement": "= 0.13.2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "duo_api",
+      "requirement": "~> 1.3",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-sdk",
+      "requirement": "~> 0.3.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "paper_trail",
+      "requirement": "~> 15.0",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "i18n_data",
+      "requirement": "~> 0.13.1",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
+      "name": "gitlab-cloud-connector",
+      "requirement": "~> 1.5",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    }
+  ]
+}

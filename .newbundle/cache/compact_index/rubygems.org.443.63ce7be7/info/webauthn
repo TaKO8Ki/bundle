@@ -1,0 +1,43 @@
+---
+0.0.0 |checksum:b6cf402b71091e87ce952c35d2ce2544188257a94aae42d153017b846c6a31f4
+0.1.0 cbor:~> 0.5.9.2|checksum:c68f746124482e71eb4d60eba4b23879e86e717afbfd11570bf5471d26698338
+0.2.0 cbor:~> 0.5.9.2|checksum:05430d66d99e8de336e4b2c82773715210043c451561454b42a1163c49de48fd
+1.0.0 cbor:~> 0.5.9.2,cose:~> 0.1.0|checksum:0304079b53ffa875929473b557df8d26bd7eec5efa7b94df76057c0cb7be1589
+1.1.0 cbor:~> 0.5.9.2,cose:~> 0.1.0|checksum:4ba99466a835c0eca2974a7b5ba574a8ca0340a15d5e26ac18173bb90af58af0
+1.2.0 cbor:~> 0.5.9.2,cose:~> 0.1.0|checksum:4d23521252238e2e6c605b97dafd7575196413843a1877666138ae798e4f629c
+1.3.0 cbor:~> 0.5.9.2,cose:~> 0.1.0|checksum:6a02a20cd83b247c832de88f55460cf56e81b860a435ec70710602d332d1ca9a
+1.4.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5|checksum:8ff56c84c5f735e03cddb1298648055ee4c1717df804732827d025754c2ca75c,ruby:>= 2.4
+1.5.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0|checksum:6e838150e4c28626c5a8f463c2a561daf7df1a2e2973086e8a196538884fc08c,ruby:>= 2.3
+1.6.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0|checksum:ba9f72954bef5455171a41641ed69f79605a7f2b94505a992d5776b2c80872a0,ruby:>= 2.3
+1.7.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0|checksum:17db935e47ce8ff939b5541e7c892776e18d98ae4dfd9f0ff63161688ba429ea,ruby:>= 2.3
+1.8.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0|checksum:779b78d13fc654741dbe388a2c895a1a09eb36c7070245e6c350a2fc50d459f6,ruby:>= 2.3
+1.9.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:7e3406224a9f96aca5df430e964c3dea9fd44c13fac455e01b647e333f67cc62,ruby:>= 2.3
+1.10.0 cbor:~> 0.5.9.2,cose:~> 0.1.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:32e6df1e687148bf3f8827d125060be70f35b481006b2ee3d8d7d686ce1f2b7d,ruby:>= 2.3
+1.11.0 cbor:~> 0.5.9,cose:~> 0.4.1,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:57e287fe78cb750edf417424d532a1a50e057ad2c3dc4c80c1bcd546446a93ee,ruby:>= 2.3
+1.12.0 cbor:~> 0.5.9,cose:~> 0.6.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:32dd93dc41af49c948cfaf8e61f8f365b7287f1dc590511627c2aa924b6ab254,ruby:>= 2.3
+1.13.0 cbor:~> 0.5.9,cose:~> 0.6.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:7c1194a7cd18e0b384e6a2045c6b162a5a5cf75cdbcbc5750c6db2973d5c230f,ruby:>= 2.3
+1.14.0 bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.6.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:372d8855e14776b012c514736bd3599fae058a85178021042d901dab62753154,ruby:>= 2.3
+1.15.0 bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.7.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:68e952464f180c784a3990bf13bd060c01cf0c27cc2884c56c1efad48c17dbfe,ruby:>= 2.3
+1.16.0 bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.7.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:1dca7910090ed7139f2ad42eaae47ec24a5789f4f76bb8c2ccfad8fd44088a05,ruby:>= 2.3
+1.17.0 bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.7.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:70a59cd30d271d4913bf5d31a3820d98c55645f4adabdeaa39a970c5dba441b1,ruby:>= 2.3
+1.18.0 bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.7.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:3450ff04992c906ae191d0cf8ea365ab31864d0967a5ee90ccd1773d2043f8ee,ruby:>= 2.3
+2.0.0.beta1 awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.8.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:6bb608ea4b88cae8fd8ee208a4ea670f592e21ade2659baaea66338c7adefc02,ruby:>= 2.3,rubygems:> 1.3.1
+2.0.0 awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.8.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:45810efcd68cf1073fba7d0c3396a16b3c3f6c2bff2a598cfc00db237f4116bf,ruby:>= 2.3
+2.1.0 awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.10.0,jwt:< 3.0&>= 1.5,openssl:~> 2.0,securecompare:~> 1.0|checksum:f61a41f2335d3abc5cd5a84cb1456a5712617dda96d53974982c24ec9de668eb,ruby:>= 2.3
+2.2.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 0.11.0,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.7.0|checksum:3d0279e4592e554ca63f1d4dcff6ddf55d4fb424de5422b098bcb86a329c77bc,ruby:>= 2.4
+2.2.1 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.0,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.9.0|checksum:83ef3fc3bd93b1dea7305689af476421f54875b9c262be8bda082b86f4007ceb,ruby:>= 2.4
+2.3.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.0,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.9.0|checksum:96fbee59f4a45219f1dae96f467b693de144f871be9ec6ea357168624dacd89e,ruby:>= 2.4
+3.0.0.alpha1 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.0,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.9.0|checksum:7808a4d297fee36e90815941bb0a542a29ac11047c4b7fc8ee6ec34fc542f9ca,ruby:>= 2.4,rubygems:> 1.3.1
+2.4.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.10.0|checksum:d5de66c2f2af0f868484cbc458a27dfaf616fea92df6e4c8bd521597a9669f45,ruby:>= 2.4
+2.4.1 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:~> 2.0,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.10.0|checksum:26d4f2d531d5aee3509d37988a6b312bf6db6f40c44b5720e8a844b257883d63,ruby:>= 2.4
+2.5.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:~> 2.1,safety_net_attestation:~> 0.4.0,securecompare:~> 1.0,tpm-key_attestation:~> 0.10.0|checksum:afaa61b3bb8e251b260a6bb1c9fdaf832adcc19fa3e11161e611b19016ac026b,ruby:>= 2.4
+2.5.1 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:~> 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.10.0|checksum:7730ffe0d1c34e2bb5cbc63655fe7a3a38d3e1a536dccb6a3ad8391392b3e29b,ruby:>= 2.4
+2.5.2 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:< 3.1&>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.11.0|checksum:4135431322408a979031141ba71b35e4c2f8613ff4204d561bcbce3c110e42bf,ruby:>= 2.4
+3.0.0.alpha2 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:< 3.1&>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.11.0|checksum:b47eda64d5dce42db1576d45ecfa2117e6b152826000feae4e5f02ec44e1b396,ruby:>= 2.5,rubygems:> 1.3.1
+3.0.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.12.0|checksum:3f77d422c2a8a4b31e56cf42f83414bd066e0506e9896936e1730262dc4a20e6,ruby:>= 2.5
+3.1.0 android_key_attestation:~> 0.3.0,awrence:~> 1.1,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.12.0|checksum:e545fcf17d8a6b821161a37c1c4bc8c3d2ead0ff6ff3b098f57f417e731790b7,ruby:>= 2.5
+3.2.0 android_key_attestation:~> 0.3.0,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.12.0|checksum:d4ff2dafc04ce2eb409f14a7ca75315992ff8f944a2a3f8aef8dca8aeedbab4f,ruby:>= 2.5
+3.2.1 android_key_attestation:~> 0.3.0,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.12.0|checksum:1660a7e402f27509734d4a4474ff7b106bff79df0c21bd521eb038da39672848,ruby:>= 2.5
+3.2.2 android_key_attestation:~> 0.3.0,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.12.0|checksum:46e70b234963c85bbf8ea8febc9a3cbf04569e34a73a570d86f68556f3f36a38,ruby:>= 2.5
+3.3.0 android_key_attestation:~> 0.3.0,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.14.0|checksum:3068f3cf4b9403c50df59618247a17f0a2b5ccbeb9b9f510b11c6b0e3704cc3b,ruby:>= 2.5
+3.4.0 android_key_attestation:~> 0.3.0,bindata:~> 2.4,cbor:~> 0.5.9,cose:~> 1.1,openssl:>= 2.2,safety_net_attestation:~> 0.4.0,tpm-key_attestation:~> 0.14.0|checksum:a10665f5e05eb156ba0219fd17480c57e0af4daaf83e3e33439bf958350af4c5,ruby:>= 2.5

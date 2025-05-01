@@ -1,0 +1,8 @@
+---
+0.1.1 nokogiri:~> 1.6|checksum:74bc64d2c2f785e3dc99d61e856d5fa20dee23a4cdf3f0226c91b9ae299916c6
+0.1.2 nokogiri:~> 1.6|checksum:71048273c5eb2ae0b3c62268c3adee06c16c3a5e9d23bf257ee67900daab3503
+0.2.0 nokogiri:~> 1.6|checksum:31c2f0be9ab7aa4fc780b07d5f84882ebc22a9024c29a45f4f5adfe42e92ad4f
+0.2.1 nokogiri:~> 1.6|checksum:be4a249478cd6061cb5a30824036015af1d34b2a8cd7d03c2a1e91d8e102720b
+0.3.0 nokogiri:~> 1.8.5|checksum:e5f488a343d59b76f0f0d940fa98bc8bf21018902e1b219eefcd1a65445f4f5f
+0.3.1 nokogiri:~> 1.10.3|checksum:8cc85d74dfd57041eae3b0c28660497f5f7e8be235853e0ecd8431e4834fe1a2
+0.4.0 nokogiri:< 2.0&>= 1.0|checksum:b1becfa0b9150739633f7dc6d8637a49d7e38c3223bcb3afa3cebf59960afdc5,ruby:>= 3.0

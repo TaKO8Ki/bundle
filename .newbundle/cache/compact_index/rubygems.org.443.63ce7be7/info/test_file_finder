@@ -1,0 +1,10 @@
+---
+0.0.1 |checksum:7306b8c675e716f8eb6edfbf09c023e2988c38f2f8481c06faf0d08a603e14ea
+0.1.0 |checksum:b085fe321291fd260c162e14dcb8ea7cbb2a4e66b1b21feda9b7cc4b1d2fdf60
+0.1.1 |checksum:efd955ca7b6076ad7b30b29387f6a4e131ef206d98cb0fc2ff71be989c3eb1f5
+0.1.3 faraday:~> 1.0.1|checksum:f1d18c000916e3e2ed4a7683aa0a0c938cfcc5fdfc311255d8a3d9f3ce8f7055
+0.1.4 faraday:~> 1.0|checksum:bc36d8339eac4fb9dc36514a7c5f4d389ac2fb6d010716fc715c5c8fbb98eacd
+0.2.0 faraday:>= 1.0&>= 2.0.1|checksum:c8ec03677b37a1020de9f38e21922a1a7a0cebb454b33545d21e72a725ac79ae
+0.2.1 faraday:!= 2.0.0&< 3.0&>= 1.0|checksum:a5e9b369d80c76aefbb609acf5e11d89a048f35e565de3cc261c20112f0fcdb3
+0.3.0 faraday:!= 2.0.0&< 3.0&>= 1.0|checksum:702e887acfb1c0d4b685c46b72f90f875bd9d39e75aa707f1664c87cd799b089,ruby:>= 3.0
+0.3.1 faraday:!= 2.0.0&< 3.0&>= 1.0|checksum:83fb0588a06b2784b51892910b9bfd06609f8d31f2d851a98d976f644d177199,ruby:>= 3.0

@@ -1,0 +1,5 @@
+---
+0.10.6.1 numerizer:~> 0.1.1|checksum:fa69969cc605f4a2e48072fe9ae70ef077013d57eff552ae4212cba886b25265
+0.10.6.2 numerizer:~> 0.2|checksum:6dda4cfe7dca9b958f163ac8835c3d9cc70cf8df8cbb89bb2fbf9ba4375105fb
+0.11.0 numerizer:~> 0.2|checksum:c2fd201724a9031ff0af23d07a30231cebefbf83c3e682daae452cda5f514ba6
+0.12.0 numerizer:~> 0.2|checksum:0d766944d415b5c831f176871ee8625783fc0c5bfbef2d79a3a616f207ffc16d

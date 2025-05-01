@@ -1,0 +1,5 @@
+---
+1.0.1 omniauth-oauth2:~> 1.7.1|checksum:2f81ec0b8f98d2ab5e5d64555c75ace46582cf27c4ef4207aa59f15331dd697a
+2.0.0 omniauth-oauth2:~> 1.8|checksum:8ecf369d51cd5317c1e7c6b80276891f76cff210a534ec654326af5c62265de3
+2.0.1 omniauth-oauth2:~> 1.8|checksum:b14c425bca02b4d0f73e710ceb62c0f1f8533e0c427c1c495d2b40f87b3f48d3
+3.0.0 omniauth-oauth2:~> 1.8|checksum:9c5c4f3abb40d774b946015f177d503fbde99b2b57c0858284c25cc39369013e

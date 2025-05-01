@@ -1,0 +1,22 @@
+---
+0.1.0 opentelemetry-api:~> 1.0.0.rc3,opentelemetry-instrumentation-base:~> 0.18.2,opentelemetry-instrumentation-rack:~> 0.19.1|checksum:826938cade0419a83f09ba97777024d74225a5b9a8befae6e442ea5334db8a44,ruby:>= 2.5.0
+0.1.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.18.3,opentelemetry-instrumentation-rack:~> 0.19.1|checksum:e88370545b22b0597b98a9cc77ec19e08a48bc95cc1f03c2e15c7445d301f481,ruby:>= 2.5.0
+0.1.2 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.18.3,opentelemetry-instrumentation-rack:~> 0.20.0|checksum:e841f8997dfddbbf790d10bb728846a7c38b9f622f94ca12ade5e9072a56f0e3,ruby:>= 2.5.0
+0.1.3 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.19.0,opentelemetry-instrumentation-rack:~> 0.20.0|checksum:80b7f327ad5cffbc0a7bfccb828a054bd8ff8dfd61459f64d6d5c87fa2711dd0,ruby:>= 2.5.0
+0.1.4 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.20.0,opentelemetry-instrumentation-rack:~> 0.20.0|checksum:1410a7d2c2f32db0d736d4f14b25ecbdc76b51ec5715d081d6cbf516c1ef2a56,ruby:>= 2.5.0
+0.2.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21.0|checksum:df354d3ce2bd469d2310e2cbaf08bd6068079ef6b0d291734b2d062cbf1e7877,ruby:>= 2.6.0
+0.2.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21.0|checksum:3c007ea606e1138b1bb57e8137f5fe43ae1c5fc3b58822746d0f9ebcb62f117d,ruby:>= 2.6.0
+0.3.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21.0|checksum:5295c1d3351f25d7bed9f11b9b8aef7d063d925254e1c063805f09b756c8a4f2,ruby:>= 2.6.0
+0.3.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21.0|checksum:a6d351f584ca09fa03e877af4e826969bc36e8ac4944ac0b418b29dbd9c3c723,ruby:>= 2.6.0
+0.3.2 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:f2264e89e576e6a2931cb5f47ac290d9c56f5becabbbe20fd6ca25c346302292,ruby:>= 2.6.0
+0.4.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:0a20c7b6eb781fea40aeb27af4ff65b4fad61142aa5a3e701cbe11c4b1c3aaf3,ruby:>= 2.6.0
+0.4.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:4e767fc51200427129b17ffb8ac5950d026c4fdec68b82c1bb51e32da7d48148,ruby:>= 2.6.0
+0.5.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:d305cbb904ee152c08b7c7e0ad8458d542e8382fffa509f5fc9e977b2d4eca11,ruby:>= 2.6.0
+0.6.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:bbf3c4f72633723a97b0fcb08ca3af1357d23b0f03f29f886cae6f7b9c10c9a4,ruby:>= 3.0
+0.7.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1,opentelemetry-instrumentation-rack:~> 0.21|checksum:8699ac084ae9bb5b23caae43e6ef1fd4b31a91a70299b6ae27037c6e9de04ab5,ruby:>= 3.0
+0.7.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1,opentelemetry-instrumentation-rack:~> 0.21|checksum:a389b955c05dbe06bd044441ef46a204bb642790453c7f2732910cc103e28859,ruby:>= 3.0
+0.8.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1,opentelemetry-instrumentation-rack:~> 0.21|checksum:854b7a57f87da939710ca0aa4d639058de1fc2f16fd407dd9239d8c822bca7ac,ruby:>= 3.0
+0.9.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1,opentelemetry-instrumentation-rack:~> 0.21|checksum:c5df8472afc9cdbfc1425d9af7816b9cfc1a1a69b86621f1fc624974bd9acb9a,ruby:>= 3.0
+0.10.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1,opentelemetry-instrumentation-rack:~> 0.21|checksum:2d821a45be4c2a281cfa42ec96562268b50ff5d5fac77386e7e39e792bceab02,ruby:>= 3.0
+0.11.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.23.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:007915987c6d18c34de831cb20666fcfd4dfed80fc34381206ae2b7cee0d8438,ruby:>= 3.1
+0.12.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.23.0,opentelemetry-instrumentation-rack:~> 0.21|checksum:c7940b1771cff440f7828841ed3b0f4546ae71d89f8433b1afcde9dbc7e8ee35,ruby:>= 3.1

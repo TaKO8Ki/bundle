@@ -1,0 +1,26 @@
+---
+0.1.0 opentelemetry-api:~> 1.0.0.rc2,opentelemetry-instrumentation-base:~> 0.18.1|checksum:1e0204680328c1325acf4f170722612ca976667f15dcf6e00817cbef651ac808,ruby:>= 2.5.0
+0.1.1 opentelemetry-api:~> 1.0.0.rc2,opentelemetry-instrumentation-base:~> 0.18.1|checksum:c32afff0ab864beee6032341cd2380bfbd52093c21d33903a840a15c5e7d9540,ruby:>= 2.5.0
+0.1.2 opentelemetry-api:~> 1.0.0.rc2,opentelemetry-instrumentation-base:~> 0.18.1|checksum:dc2eafa12efd2df2b04412e0f30c48bb0cf4d4561b5c621fb614d1a6cbeaff15,ruby:>= 2.5.0
+0.1.3 opentelemetry-api:~> 1.0.0.rc3,opentelemetry-instrumentation-base:~> 0.18.2|checksum:e7ec9ae14165f0b91b47dec2420d65e7d39b5c3293516c4c0376e1d378a0c3a1,ruby:>= 2.5.0
+0.1.4 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.18.3|checksum:a8c95ed2e966b98c0d82259f0ece55efe7f67585703ff116b80b98076d1d1eb3,ruby:>= 2.5.0
+0.1.5 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.19.0|checksum:2c01f39b66f93cd96749e18bb6f1522e5abdabb6ade95dfed5c9602cb3d18ea8,ruby:>= 2.5.0
+0.2.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.20.0|checksum:7bd428f0c21e93bed33a9fb05a3afa8f3ccf78f958ec7c43802a12ea06ae6fee,ruby:>= 2.5.0
+0.3.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0|checksum:35722b5725bf0ab995312e9bb8d4d8aecd43f89b46ba89d2865dff69260fddbe,ruby:>= 2.6.0
+0.3.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0|checksum:56316de03e0fa8171ec6dec58b84bdf6864e614ba2e9e0457068d69d663c855b,ruby:>= 2.6.0
+0.4.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.21.0|checksum:4a7984b547b308898f6d61836566f61e7a467540d094121cf0d893dc959ae5d0,ruby:>= 2.6.0
+0.5.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.0|checksum:5d034a73b00b97e53ae6469459d1408b90d15bf926ce5af24dc00f19207968e9,ruby:>= 3.0
+0.5.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:737ef40b83d84a3ae1ebee0320e590a39423eb8f5f24373b263ebd6ccbff8bd4,ruby:>= 3.0
+0.5.2 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:dcf31eb8983ce43ff6fc72b7683b387e272ed35247f256a263cb44f20fccc988,ruby:>= 3.0
+0.6.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:884728734c771019478a677e4f4a8cf68467503a1f6838646ab6b1a1ffd230d5,ruby:>= 3.0
+0.6.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:d2152299a85d0aa5a48dd8e7f51ce0c638355e6755db0bcb0edb88fb45e14249,ruby:>= 3.0
+0.7.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:d3c65d0fa86c2f9e9ac26fa3e1e40d023d3ba3a8223dc58037e1ea9bb40ccdee,ruby:>= 3.0
+0.7.1 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:da24806c9d92fe580db42638f6c763fe1324ff90aa147d45d4247f8052c68089,ruby:>= 3.0
+0.7.2 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:0989855541bcd4cb7f4bb47ef79f9c6d3a004e19e009a9246b8ae3384271b56e,ruby:>= 3.0
+0.7.3 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:97a187ad19cdbcb798810a0a19767eeb3493432cf6ce2dd289d74c09be055879,ruby:>= 3.0
+0.7.4 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:426357a1c50dd88c7626d96ce90115feabeb0f8385093c35e331ac0cd5d7c762,ruby:>= 3.0
+0.7.5 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:5a7d8f1a6598293d78997326c44bdf7ee29e2480708b3186495882a81f905b39,ruby:>= 3.0
+0.7.6 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:e409d088366591620a04df64c58817e117355635eaa3c68f5212ac8a04fdcd76,ruby:>= 3.0
+0.7.7 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:5db8820afd43e44d383705c0919249f11082f4472c96c341fc17b8954677aaa8,ruby:>= 3.0
+0.7.8 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.22.1|checksum:281b3d9bace7aac9f1e121b75f294e7ee8beaedd1f20405539c54df2e6763942,ruby:>= 3.0
+0.8.0 opentelemetry-api:~> 1.0,opentelemetry-instrumentation-base:~> 0.23.0|checksum:9d5d884e05421ca9444635ac9c96886bccf1a042d4ee5d3282f620d0acd5613d,ruby:>= 3.1

@@ -1,0 +1,55 @@
+---
+0.1.1 murmurhash3:~> 0.1.6|checksum:fd1e8ecc5fd3587315cb3b03dc421bc13daa32da6fe371d18ba6ea529d7739fd
+0.1.2 murmurhash3:~> 0.1.6|checksum:da5ebf8632b96694c831d554b562122bedf46f8757b1b6077803228a1bed656a,ruby:~> 2.2
+0.1.3 murmurhash3:~> 0.1.6|checksum:e2a0e2c5bf0d7062dc4d3e45fc3921282bf91b36980d01ec8ef654117a03892e,ruby:~> 2.2
+0.1.4 murmurhash3:~> 0.1.6|checksum:3f9380642835c9763a85aa7fca8b06f37fe710a8a10dd017663fe7e2c0ffd5cf,ruby:~> 2.2
+0.1.5 murmurhash3:~> 0.1.6|checksum:33875b2513d45dad986b7e35c02a37f878ad2c4f6a4c16bb6e6d6ace12ad4277,ruby:~> 2.2
+0.1.6 murmurhash3:~> 0.1.6|checksum:0dc42f22c4bd33941a30b3da6786adeda900b0082a9b4af66959db5c5cae6afa,ruby:~> 2.2
+3.2.0 murmurhash3:~> 0.1.6|checksum:cf4042397a340243a9d0ecdbb2744a6417423ac05334f460fadac2da26e7cb49,ruby:~> 2.4
+3.2.1 murmurhash3:~> 0.1.6|checksum:d9392a3ba14d14d4bd6e76c95756b31d1f5584abdac7b9f8783ea008a8ef7974,ruby:~> 2.4
+3.2.2 murmurhash3:~> 0.1.6|checksum:0f6e56498de920de66a01bceffb93933693ade646bb853fc70eb16bd1026b93b,ruby:>= 2.5
+3.2.3 murmurhash3:~> 0.1.6|checksum:4749ea4e08f1c05561be3d57180fcec011d48c1a13f82aca122fe30f5fa879fc,ruby:>= 2.5
+3.2.4 murmurhash3:~> 0.1.6|checksum:8f6992531cfafedb439c08722f45be5c9e671b0b461414a0f92ed5543de0ace2,ruby:>= 2.5
+3.2.5 murmurhash3:~> 0.1.6|checksum:6313535129e691eda1ba51378d848038e97041e0223cd84f5b8c43ecd351adbd,ruby:>= 2.5
+4.0.0 murmurhash3:~> 0.1.6|checksum:c617207437ea4e10e280488d310ebad64966b20e8007545d350ff98081efdd6e,ruby:>= 2.5
+4.1.0 murmurhash3:~> 0.1.6|checksum:af8ef2f92523bd70563fdf487e25f8763656e0f8d50c9123d7651bc1f8870927,ruby:>= 2.5
+4.2.0 murmurhash3:~> 0.1.6|checksum:20e97cd0ab218e7000332b01cedbffd08b6c1dcecab9413c3be5f1ca77c6c557,ruby:>= 2.5
+4.2.1 murmurhash3:~> 0.1.6|checksum:1ab2cb7d9f57a246490ded41fbf9f6388147960006325d6f7e8a087dde1aeb29,ruby:>= 2.5
+4.3.0 murmurhash3:~> 0.1.6|checksum:0fdc1b657743f54d1eac895cd48c3d5a6512443d0032e8bdddee46914b7dd359,ruby:>= 2.5
+4.4.0 murmurhash3:~> 0.1.6|checksum:92dc2243f705eb03e1c270da9ff58c925dd66ac831028ba1df80533047815a4a,ruby:>= 2.5
+4.4.1 murmurhash3:~> 0.1.6|checksum:da0f7bc88691c92a12303be9b88e87364caf6000212c385bcfb9103e7ec69982,ruby:>= 2.5
+4.4.2 murmurhash3:~> 0.1.6|checksum:ea07f45a8ca42e35cf357f1d226526df667a782a417fae9d210ed5a8aba20fc3,ruby:>= 2.5
+4.4.3 murmurhash3:~> 0.1.7|checksum:51059be8bc07f139af5f7f01e88106e0d4858d79a24442ca2faaffc72899724d,ruby:>= 2.5
+4.4.4 murmurhash3:~> 0.1.7|checksum:f4528ea3b37d20e9bee1b215528fce573ac16117cc6243a824b537b2950dfdd1,ruby:>= 2.5
+4.5.0 murmurhash3:~> 0.1.7|checksum:926d93db245b599d215d19c809a651d1f210d652d1ea59524526ee954a186402,ruby:>= 2.5
+4.6.0 murmurhash3:~> 0.1.7|checksum:df0bbc9ebeb0ed9b9f216acf0d518379c2bf4a977b7de1707105968932b96bb4,ruby:>= 2.5
+5.0.0 murmurhash3:~> 0.1.7|checksum:4d1c5eb777feb222faf1be4b968b60eb46376995f8aa7dc305f77c01241c8e74,ruby:>= 2.5
+5.0.1 murmurhash3:~> 0.1.7|checksum:35406cc9656b91d95443c85fa7badd8815307f4fbb69e5172ac330b8345d5cab,ruby:>= 2.5
+5.0.2 murmurhash3:~> 0.1.7|checksum:d8a6c6053b2f71ee6b3e5a3cea1647b89ab0984724e44d6cbeb1afb40046ff1f,ruby:>= 2.6
+5.0.4 murmurhash3:~> 0.1.7|checksum:3b648dffd1dee72ff91c73ac475ad6120e753d2d02d61d1398f41c05d28d5510,ruby:>= 2.6
+5.0.5 murmurhash3:~> 0.1.7|checksum:281595ed23ca9997ae18d170560cf781096374060831f075c64cc51ec7d4dcf0,ruby:>= 2.6
+5.0.6 murmurhash3:~> 0.1.7|checksum:8bbad8ca4e0dc6fd4cf5d5a2f173360500180d496bc2a5a307ac221c855c3159,ruby:>= 2.6
+5.0.7 murmurhash3:~> 0.1.7|checksum:7b0b14b9d55b3503ffdb6ee7706f7c82e042f21fc3d31a70b5f3011e596f7046,ruby:>= 2.6
+5.1.0 murmurhash3:~> 0.1.7|checksum:effa70037b3b7719345ea0544b690cac957d186564ef1b1590c201d0d79be470,ruby:>= 2.6
+5.1.1 murmurhash3:~> 0.1.7|checksum:7ed06517ecee650877a26f9bc4c323906dc24fa28166464a1468efc4691933a3,ruby:>= 2.6
+6.0.0.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.5|checksum:1afb1deb26dc9b406e185942b062501abf6389657a6e152d3156a96aeba01310,ruby:>= 2.6
+6.0.1.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.6.beta.2|checksum:16afc0053a5da9859546ca181434283856e030413ee8c36380a235cb839abfe5,ruby:>= 2.6
+6.0.2.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.6.beta.3|checksum:ce51a8787c1076ea191d176e7fb6813905ac9c166c8d535add66907edb7fc591,ruby:>= 2.6
+6.0.3.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.6.beta.4|checksum:e31d9c497283e130b41a3f8ce5fbdd6cb4a3f0028f4200fde16e0fb8bc1aef3c,ruby:>= 2.6
+6.0.4.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.6.beta.5|checksum:376541ceee2dc4a0cca5f3ad002e5212027a4d5928759567741920cc7ab0cdff,ruby:>= 2.6
+6.0.5.pre murmurhash3:~> 0.1.7,yggdrasil-engine:~> 0.0.6|checksum:b2fb537823349704dbe43dba5c3da70d2738302b6f2120684e37302fea855707,ruby:>= 2.6
+6.0.0 yggdrasil-engine:~> 0.0.6|checksum:b954cd91ff7755627c6ee49bdd5b09d25132eb6ffb26d43df5e11192cbec0fec,ruby:>= 2.7
+6.0.5 yggdrasil-engine:~> 0.0.6|checksum:23004b379e95bb7b4ed31257a97c173a18cfa0f2be6eea90a4186e2fc887f580,ruby:>= 2.7
+6.0.6 yggdrasil-engine:~> 0.0.7|checksum:527344e9b5e5ba99ee5b1b0815b3501143dbae7d7379b7580050e85d0bee3392,ruby:>= 2.7
+6.0.7 yggdrasil-engine:~> 0.0.7|checksum:35dfa0fac97ecbe1583cb9a964d6165d48b151b774f3f9792b92fe1e56f2d81d,ruby:>= 2.7
+6.0.8.beta.1 yggdrasil-engine:~> 0.0.9|checksum:6a8d5013ff336730387c25436c7fbe5a4c2c4266832437274cdaec4f7bc94e45,ruby:>= 2.7
+6.0.8 yggdrasil-engine:~> 0.0.9|checksum:911cb9c871de9a0dcb7d5b28bfb92eea5ea73cdb0e0c621b65ba0b7be6676d24,ruby:>= 2.7
+6.0.9 yggdrasil-engine:~> 0.0.9|checksum:34b9abd5a96fa889823de5bf4b245216f9cce16f14c514e01230598bcf05c00a,ruby:>= 2.7
+6.0.10 yggdrasil-engine:~> 0.0.9|checksum:fa636cdb72073f5010db060e2152e904a62fcea6227bc5d147217bd4f0da60b4,ruby:>= 2.7
+6.1.0 yggdrasil-engine:~> 1.0.1|checksum:5bd6757d1cde2cd3011fc67e0c3b608bc79026121e3171395b9e374d98c56b47,ruby:>= 2.7
+6.1.1 yggdrasil-engine:~> 1.0.1|checksum:ca4abf3110df1457063b009222ec58f03c6ae219048a733df32fd3c135d507f7,ruby:>= 2.7
+6.1.2 yggdrasil-engine:~> 1.0.1|checksum:72c376fa905efa94af5c0d4b4979d43b3e340d6c000657d49c0575eb5c05707b,ruby:>= 2.7
+6.2.0.pre.alpha.0 base64:~> 0.2.0,logger:~> 1.6.5,yggdrasil-engine:~> 1.0.3|checksum:ec80d237dfd577a6d8a70b7c3aa12c23418b909b474db00292d64bf5fcb8910d,ruby:>= 2.7
+6.2.0 base64:~> 0.2.0,logger:~> 1.6.5,yggdrasil-engine:~> 1.0.3|checksum:a87b796c36dbef483f76b1e6249489da03ca92e3e617e943d8031173e6333669,ruby:>= 2.7
+6.2.1 base64:~> 0.2.0,logger:~> 1.6.5,yggdrasil-engine:~> 1.0.3|checksum:1f83e189e699c3a81cd284156d992ec3aec1cca0645c54bec6fa1d44582802b3,ruby:>= 2.7
+6.3.0 base64:~> 0.2.0,logger:~> 1.6,yggdrasil-engine:~> 1.0.3|checksum:6aeaa5ef74c0308cce541c50757e5799d5a965ed4fc039e012f00ff226f7c779,ruby:>= 2.7

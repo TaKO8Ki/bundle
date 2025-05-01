@@ -1,0 +1,4 @@
+---
+0.1.0 grpc:>= 0|checksum:1906432c8b00cb009afc63d44e2519fff2b16d28a968cfe339c46dd0581a7f45,ruby:>= 3.0.0
+0.1.1 grpc:>= 0|checksum:bc47df12f794a407633b5a9eb27fd95118a78d701c325256fff3c9e50819097b,ruby:>= 3.0.0
+0.2.0 grpc:>= 0|checksum:f9c5308216c62185c26cacad764a1bf6cf67515dc110871441bafbb2825333e4,ruby:>= 3.0.0

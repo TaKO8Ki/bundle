@@ -1,0 +1,17 @@
+---
+0.1.3 |checksum:7b2b08c3931ca99f10a0828dc45c58e2b7a101c31a76645cce348943bcf84f5d
+0.1.4 |checksum:3031280d9d98bcc0183f78af70c93f98cb84b051808264a5cad67dc2d9375b0c
+0.1.5 |checksum:8592f7ffdbe1ecc2a1fd67468b43510422e474de1af97d78a2a086cd8d7c6183
+0.1.6 |checksum:c762dfc6b6f7705fcaeca2b3651fd531f03a1b484f0c9169dc6208c61b61ea52
+0.2.0 builder:>= 0|checksum:98303394eb0a6cb6d7d13766fc99ce20b2b468cc61925752c6ba15c9cee2d455
+0.5.0 builder:>= 0,expression_parser:>= 0|checksum:e36659ba06cd2aa38712ca04246e503a940e965089b48c2d8b013c8490f89485
+0.6.0 builder:>= 0,expression_parser:>= 0|checksum:6f1fa3abdfd4eea5932e22769a0184088f1f0f58333984d4657e01d9f8d80611
+0.6.1 builder:>= 0,expression_parser:>= 0|checksum:e22ac770d466bef52f5abed8b85532891856ca8972c7611bc395f9f65372f5b7
+0.6.2 builder:>= 0,expression_parser:>= 0|checksum:16e96322a3a45f087ebf2f8d1eac8f3c14a6d4b4dbccb1b7d77796a128e7f9e0
+0.6.3 builder:>= 0,expression_parser:>= 0|checksum:b568b8a32309947775b8485a80a1f554f211c33aa731d90ca6bcb1b792bd86ba
+0.7.0 builder:>= 0,expression_parser:>= 0|checksum:d73122e2636a4ca3683ec15e05aaed14c516ea1d9ab0662a4c5059cbc012d658
+0.7.1 builder:>= 0,expression_parser:>= 0|checksum:1d594ea7e64dfd48561c6923668be9a145d270cb99eca96c20e1314f759c45df
+0.8.0 builder:>= 0,expression_parser:>= 0|checksum:ec1df58200e3803df536d953a464dd365aaeedb11ec4eef1ade9137ebb15e0d1
+0.8.1 builder:>= 0,expression_parser:>= 0,rinku:>= 0|checksum:7ac8a9ca0a948cf472851e521afc6c2a6b04a8f91ef1d824ba6a61ffbd60e6ca
+0.8.2 builder:>= 0,expression_parser:>= 0,twitter-text:>= 0|checksum:bc9710447b5a82c0ed00d24111aff81bf090f98bac04c7cecc9efa64e4aad52b
+0.8.3 builder:>= 0,expression_parser:>= 0,htmlentities:>= 0,nokogiri:>= 0,twitter-text:>= 0|checksum:502e688579cfb6c408d353c26608d4495561c20a807697592eab8ef472c8e830

@@ -1,0 +1,19 @@
+---
+0.1.0 contracts:= 0.3|checksum:820750c5638be3947b944c2267a3c32893869ab32ad32b41feb8af9fa6bb3238,ruby:>= 1.9.3
+0.2.0 contracts:= 0.3,uuid:~> 2.3.7|checksum:f43c529c20f8f9df362fc56b41bb4621c857813d563489e76457defb512f8e7f,ruby:>= 1.9.3
+0.3.0 contracts:= 0.3,uuid:~> 2.3.7|checksum:3cbea1995e6a32be8c8ccc2c27725aa900f8bad9ad2eb1788d12289f27ec6b77,ruby:>= 1.9.3
+0.4.0 contracts:= 0.3,uuid:~> 2.3.7|checksum:fdf3763abc4979712fad779eb03e8c04500dc35084b8d5f890c93869ffb60642,ruby:>= 1.9.3
+0.4.1 contracts:= 0.3,uuid:~> 2.3.7|checksum:4786fb6bc7c958877e04ddd7d4871a5c243d3c5e0c45adf73f8363ea679f0afd,ruby:>= 1.9.3
+0.4.2 contracts:~> 0.3,uuid:~> 2.3.7|checksum:b6a36f3f884744e7a2426c2b073317f8eb88473d6a309728eafdb673a9601b37,ruby:>= 1.9.3
+0.5.0 contracts:<= 0.11&~> 0.7,uuid:~> 2.3.7|checksum:6e48b27616d9baa92beca0b4ab82f2f8a8e39b48f89688d863dc0477ef147b30,ruby:>= 1.9.3
+0.5.1 contracts:<= 0.11&~> 0.7|checksum:7b0e2b140254b046ece54616bf951c8cb74a55890e664a5017f5001a3509ff86,ruby:>= 1.9.3
+0.5.2 contracts:<= 0.11&~> 0.7|checksum:02392c90e82f9bd4dbf072cd2bda83098f76bb3e91972837a1bb40c6b8214c38,ruby:>= 1.9.3
+0.6.0 contracts:<= 0.11&~> 0.7|checksum:c698fefa7f1cff161fc740f02c1600d42edb13afd2439087d194ca5fd4439f77,ruby:>= 2.0.0
+0.6.1.pre.beta.2 contracts:<= 0.11&~> 0.7|checksum:a708149453de5615a2f2dc9936166aa95fdead0b7fdf53aa264d64ac349a82f2,ruby:>= 2.0.0,rubygems:> 1.3.1
+0.6.1 contracts:<= 0.11&~> 0.7|checksum:9cec52fd060619f4974b3dc1f7d9a2776c5e31b668a6ead53145b9780e312314,ruby:>= 2.0.0
+0.7.0.pre.alpha.0 contracts:<= 0.11&~> 0.7|checksum:f90f2046dab91c74aea964301e600bf52ac83a52694d52b77716b89063ef99c9,ruby:>= 2.0.0,rubygems:> 1.3.1
+0.7.0.pre.alpha.1 contracts:<= 0.11&~> 0.7|checksum:ca9f3936c58f72a16652158ca8e36ce3a8bb9e5a91f24659aa6907a1a2464233,ruby:>= 2.0.0,rubygems:> 1.3.1
+0.7.0.pre.alpha.2 contracts:<= 0.11&~> 0.7|checksum:eac4b2f9916fab29ff00587ba24f4a613bd32592ac5cb5d644763ca22bc482c9,ruby:>= 2.0.0,rubygems:> 1.3.1
+0.7.0 contracts:< 0.17&~> 0.7|checksum:5869310594ed46c3bd5e5c3a46c1fa74a4a1a802651f3073ff59df0fc224c6ec,ruby:>= 2.1
+0.8.0 |checksum:7ba6f4f1443a829845fd28e63eda72d9d3d247f485310ddcccaebbc52b734a38,ruby:>= 2.1
+0.8.1.pre.rc1 |checksum:bed5e4a34127a00fe7413cb2e85ab4a4de9b0b1733058ba6a13c7f0fdf4e608e,ruby:>= 2.1,rubygems:> 1.3.1

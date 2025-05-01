@@ -1,0 +1,5 @@
+---
+0.1.0 memory_profiler:~> 0.9|checksum:2a52460646ff1339925d42c4b957eacfbefde0dcb400ff9cc6828c8cfe4d6d59
+0.1.1 memory_profiler:~> 0.9|checksum:ad4c28b2fb6375a8d3dc57168c081b282da165e52cc20bc08f0e30bf2d300bdf
+0.1.2 memory_profiler:~> 0.9|checksum:aa7bfe6776174d0ddefe6fb39945d88fff6d76eac165690188391d9acd441c87
+0.2.0 memory_profiler:~> 1|checksum:ca1e436433b09535ee8f64f80600a5edb407cff1f6ac70e089ca238118e6ab5c,ruby:>= 2.5.0
