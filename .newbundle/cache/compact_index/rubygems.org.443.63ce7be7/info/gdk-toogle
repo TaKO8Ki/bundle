@@ -1,4 +1,0 @@
----
-0.7.0 haml:>= 0,rails:>= 7.0.4.2|checksum:684c9866a249d704e6db7cc07e5a0224d929f08fd373f595729a149341441f80
-0.9.3 haml:>= 0,rails:>= 7.0.4.2|checksum:897f5d3d5d2b2d4a4438c5fb8227f2888d3ad0180353c0d62d0dece2cd22eebf
-0.9.5 haml:>= 0,rails:>= 7.0.4.2|checksum:38b8972576d324c0905e5a2935592c21ec36bedb4bf1e6d195257ee20ebad249

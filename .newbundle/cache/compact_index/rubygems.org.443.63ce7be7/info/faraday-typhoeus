@@ -1,6 +1,0 @@
----
-0.1.0 faraday:~> 2.0,typhoeus:~> 1.4|checksum:e7d9d9ebc141d9306f31ec095700ffab12b0e85c5a994ee8d054b3b718948610,ruby:>= 2.7.0
-0.2.0 faraday:~> 2.0,typhoeus:~> 1.4|checksum:926d14c60820e469d9280ffb8360c95f9cb5636039f70b351fe4291e3dfad764,ruby:>= 2.7.0
-0.2.1 faraday:~> 2.0,typhoeus:~> 1.4|checksum:4c5412e0f87194927fa448ba38d9e8d08410473f0643b7a1bc3225299fc823c3,ruby:>= 2.6.0
-1.0.0 faraday:~> 2.0,typhoeus:~> 1.4|checksum:700058a5d1d5f784c358f80322a180ad3c48964f6f524754a844aa67f34996a8,ruby:>= 2.6.0
-1.1.0 faraday:~> 2.0,typhoeus:~> 1.4|checksum:24c6147c213818dde3ebc50ae47ab92f9a7e554903aa362707126f749c6890e7,ruby:>= 2.6.0

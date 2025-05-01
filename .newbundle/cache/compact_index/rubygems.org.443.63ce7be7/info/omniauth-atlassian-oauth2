@@ -1,3 +1,0 @@
----
-0.1.0 omniauth:>= 1.1.1,omniauth-oauth2:>= 1.5|checksum:07a1fd7c563278e33339161b4cad50ffc34a291ca1f0cd975f9dde3562af6a04,ruby:>= 2.1
-0.2.0 omniauth:>= 1.1.1,omniauth-oauth2:>= 1.5|checksum:eb07574a188ab8a03376ce288bce86bc2dd4a1382ffa5781cb5e2b7bc15d76c9,ruby:>= 2.1
