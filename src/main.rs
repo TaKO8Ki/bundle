@@ -1,9 +1,9 @@
+mod cli;
 mod compact_index_client;
 mod executor;
 mod installer;
 mod resolver;
 mod version;
-mod cli;
 
 use compact_index_client::CompactIndexClient;
 use executor::Executor;
@@ -80,26 +80,32 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     for (gem, versions) in gems {
         for v in versions {
-            let constraints: Vec<(String, Ranges<RubyVersion>)> = v
+            let constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)> = v
                 .dependencies
                 .iter()
-                .map(|dep| (dep.name.clone(), dep.requirement.clone()))
+                .map(|dep| {
+                    (
+                        dep.name.clone(),
+                        dep.requirement.clone(),
+                        dep.requirement_str.clone(),
+                    )
+                })
                 .collect();
             resolver.add_dependencies(gem.clone(), v.version, constraints);
         }
     }
     let root_pkg = "root".to_string();
     let root_ver = RubyVersion::new(0, 0, 0);
-    let root_constraints: Vec<(String, Ranges<RubyVersion>)> = gemfile
+    let root_constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)> = gemfile
         .dependencies
         .into_iter()
         .map(|gem| {
             // semver::VersionReq から VS へ
-            let vs = match gem.requirement {
+            let (vs, req_str) = match gem.requirement {
                 Some(req) => parse_req(&req, ","), // :contentReference[oaicite:1]{index=1}
                 None => parse_req("*", ","),
             };
-            (gem.name, vs)
+            (gem.name, vs, req_str)
         })
         .collect();
     resolver.add_dependencies(root_pkg, root_ver, root_constraints);
@@ -107,7 +113,12 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let solution = resolver.resolve().expect("dependency resolution failed");
 
     for (pkg, ver) in &solution {
-        println!("  - {} @ {}", pkg, ver);
+        println!("  - {} ({})", pkg, ver);
+        if let Some(deps) = resolver.get_dependencies_str(pkg, ver) {
+            for (dg, dr) in deps {
+                println!("    - {} ({})", dg, dr.join(", "))
+            }
+        }
     }
 
     match &cli.command() {

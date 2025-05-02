@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use pubgrub::{
     Dependencies, DependencyConstraints, DependencyProvider, OfflineDependencyProvider, Ranges,
     resolve,
@@ -14,15 +16,18 @@ use crate::version::RubyVersion;
 
 pub struct Resolver {
     dependency_provider: OfflineDependencyProvider<String, Ranges<RubyVersion>>,
+    lock_meta: HashMap<(String, RubyVersion), Vec<(String, Vec<String>)>>,
 }
 
 impl Resolver {
     pub fn new() -> Self {
         Resolver {
             dependency_provider: OfflineDependencyProvider::new(),
+            lock_meta: HashMap::new(),
         }
     }
 
+    #[instrument(level = Level::INFO, skip_all)]
     pub fn resolve(&self) -> anyhow::Result<Vec<(String, RubyVersion)>> {
         let root_pkg = "root".to_string();
         let root_ver = RubyVersion::new(0, 0, 0);
@@ -50,14 +55,32 @@ impl Resolver {
         }
     }
 
+    #[instrument(level = Level::DEBUG, skip_all)]
+    pub fn get_dependencies_str(
+        &self,
+        package: &String,
+        version: &RubyVersion,
+    ) -> Option<&Vec<(String, Vec<String>)>> {
+        self.lock_meta.get(&(package.clone(), version.clone()))
+    }
+
     pub fn add_dependencies(
         &mut self,
         gem: String,
         version: RubyVersion,
-        constraints: Vec<(String, Ranges<RubyVersion>)>,
+        constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)>,
     ) {
-        self.dependency_provider
-            .add_dependencies(gem, version, constraints);
+        self.dependency_provider.add_dependencies(
+            gem.clone(),
+            version.clone(),
+            constraints.iter().map(|c| (c.0.clone(), c.1.clone())),
+        );
+        self.lock_meta.entry((gem, version)).or_insert(
+            constraints
+                .iter()
+                .map(|c| (c.0.clone(), c.2.clone()))
+                .collect(),
+        );
     }
 }
 

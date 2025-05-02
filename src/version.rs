@@ -1,6 +1,84 @@
-use pubgrub::Ranges;
+use pubgrub::{Ranges, VersionSet};
 use semver::Version as SemVersion;
 use tracing::debug;
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RichReq {
+    pub range: Ranges<RubyVersion>,
+    pub allow_pre: bool,
+}
+
+impl std::fmt::Display for RichReq {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut text = String::new();
+        text.push_str(&self.range.to_string());
+        if self.allow_pre {
+            text.push_str(" (allow pre-release)");
+        }
+        write!(f, "{}", text)
+    }
+}
+
+impl VersionSet for RichReq {
+    type V = RubyVersion;
+
+    fn empty() -> Self {
+        RichReq {
+            range: Ranges::empty(),
+            allow_pre: false,
+        }
+    }
+
+    fn singleton(v: Self::V) -> Self {
+        Self {
+            range: Ranges::singleton(v.clone()),
+            allow_pre: v.is_prerelease(),
+        }
+    }
+
+    fn complement(&self) -> Self {
+        Self {
+            range: self.range.complement(),
+            allow_pre: self.allow_pre,
+        }
+    }
+
+    fn intersection(&self, other: &Self) -> Self {
+        Self {
+            range: self.range.intersection(&other.range),
+            allow_pre: self.allow_pre && other.allow_pre,
+        }
+    }
+
+    fn contains(&self, v: &Self::V) -> bool {
+        if v.is_prerelease() && !self.allow_pre {
+            return false;
+        }
+        self.range.contains(v)
+    }
+
+    fn full() -> Self {
+        RichReq {
+            range: Ranges::full(),
+            allow_pre: true,
+        }
+    }
+
+    fn union(&self, other: &Self) -> Self {
+        Self {
+            range: self.range.union(&other.range),
+            allow_pre: self.allow_pre || other.allow_pre,
+        }
+    }
+
+    fn is_disjoint(&self, other: &Self) -> bool {
+        Ranges::is_disjoint(&self.range, &other.range)
+    }
+
+    fn subset_of(&self, other: &Self) -> bool {
+        Ranges::subset_of(&self.range, &other.range)
+    }
+}
 
 #[derive(Debug, Clone, Eq, PartialEq, Hash)]
 pub enum Segment {
@@ -47,6 +125,7 @@ impl PartialOrd for RubyVersion {
         Some(std::cmp::Ordering::Equal)
     }
 }
+
 impl Ord for RubyVersion {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.partial_cmp(other).unwrap()
@@ -105,6 +184,13 @@ impl RubyVersion {
 
     fn has_suffix(&self) -> bool {
         self.to_string().contains('-')
+    }
+
+    /// > If any part contains letters (currently only a-z are supported)
+    /// then that version is considered prerelease.
+    /// https://docs.ruby-lang.org/en/3.4/Gem/Version.html
+    pub fn is_prerelease(&self) -> bool {
+        self.segments.iter().any(|s| matches!(s, Segment::Text(_)))
     }
 
     pub fn bump(&self) -> Self {
@@ -182,15 +268,17 @@ fn parse_semver(text: &str) -> anyhow::Result<SemVersion> {
         .map_err(|e| anyhow::anyhow!("Failed to parse semver string: {}. Error: {}", text, e))
 }
 
-pub fn parse_req(text: &str, separator: &str) -> Ranges<RubyVersion> {
+pub fn parse_req(text: &str, separator: &str) -> (Ranges<RubyVersion>, Vec<String>) {
     let mut set = Ranges::full();
+    let mut req_str = vec![];
 
     if text.trim() == "*" {
-        return Ranges::full();
+        return (Ranges::full(), req_str);
     }
     debug!("Parsing version requirement: {}", text);
     for part in text.split(separator) {
         let s = part.trim();
+        req_str.push(s.to_string());
         if s == "*" {
             continue;
         }
@@ -213,6 +301,8 @@ pub fn parse_req(text: &str, separator: &str) -> Ranges<RubyVersion> {
             ("=", s.trim_start_matches('=').trim())
         };
         let rv = RubyVersion::parse(ver_str);
+
+        RichReq::singleton(rv.clone());
 
         let rng = match op {
             "=" => Ranges::singleton(rv.clone()),
@@ -268,7 +358,7 @@ pub fn parse_req(text: &str, separator: &str) -> Ranges<RubyVersion> {
         debug!("Parsed range: {:?}", rng);
         set = set.intersection(&rng);
     }
-    set
+    (set, req_str)
 }
 
 #[cfg(test)]
@@ -323,7 +413,7 @@ mod tests {
 
     #[test]
     fn gt_operator() {
-        let r: Ranges<RubyVersion> = parse_req(">3.0", ",");
+        let r: Ranges<RubyVersion> = parse_req(">3.0", ",").0;
         assert!(!r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(3),
@@ -352,7 +442,7 @@ mod tests {
 
     #[test]
     fn ge_operator() {
-        let r: Ranges<RubyVersion> = parse_req(">=1.2.3", ",");
+        let r: Ranges<RubyVersion> = parse_req(">=1.2.3", ",").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(1),
@@ -381,7 +471,7 @@ mod tests {
 
     #[test]
     fn lt_le_operators() {
-        let lt: Ranges<RubyVersion> = parse_req("<2.0", ",");
+        let lt: Ranges<RubyVersion> = parse_req("<2.0", ",").0;
         assert!(!lt.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(2),
@@ -399,7 +489,7 @@ mod tests {
             platform_segment: None
         }));
 
-        let le: Ranges<RubyVersion> = parse_req("<=2.0", ",");
+        let le: Ranges<RubyVersion> = parse_req("<=2.0", ",").0;
         assert!(le.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(2),
@@ -420,7 +510,7 @@ mod tests {
 
     #[test]
     fn eq_operator() {
-        let r: Ranges<RubyVersion> = parse_req("=1.4.5", ",");
+        let r: Ranges<RubyVersion> = parse_req("=1.4.5", ",").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(1),
@@ -441,7 +531,7 @@ mod tests {
 
     #[test]
     fn wildcard() {
-        let r: Ranges<RubyVersion> = parse_req("*", ",");
+        let r: Ranges<RubyVersion> = parse_req("*", ",").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(0),
@@ -462,7 +552,7 @@ mod tests {
 
     #[test]
     fn pessimistic_operator() {
-        let r: Ranges<RubyVersion> = parse_req("~>1.5", ",");
+        let r: Ranges<RubyVersion> = parse_req("~>1.5", ",").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(1),
@@ -514,7 +604,7 @@ mod tests {
 
     #[test]
     fn not_equal_operator() {
-        let r: Ranges<RubyVersion> = parse_req("!=2.1.3", ",");
+        let r: Ranges<RubyVersion> = parse_req("!=2.1.3", ",").0;
         assert!(!r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(2),
@@ -543,7 +633,7 @@ mod tests {
 
     #[test]
     fn multiple_version_req() {
-        let r: Ranges<RubyVersion> = parse_req(">2.0&<=3.0", "&");
+        let r: Ranges<RubyVersion> = parse_req(">2.0&<=3.0", "&").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(2),
@@ -580,7 +670,7 @@ mod tests {
 
     #[test]
     fn multiple_version_req_with_comma() {
-        let r: Ranges<RubyVersion> = parse_req(">=2.0,<3.0", ",");
+        let r: Ranges<RubyVersion> = parse_req(">=2.0,<3.0", ",").0;
         assert!(r.contains(&RubyVersion {
             segments: vec![
                 Segment::Numeric(2),
@@ -636,5 +726,12 @@ mod tests {
         let rv = RubyVersion::parse("3.0.0.rc12");
         let bumped = rv.bump();
         assert_eq!(bumped.to_string(), "3.1");
+    }
+
+    #[test]
+    fn test_comp() {
+        let rv = RubyVersion::parse("1.2.3");
+        let prerv = RubyVersion::parse("1.2.3.pre");
+        assert!(rv > prerv)
     }
 }
