@@ -4,6 +4,7 @@ mod executor;
 mod installer;
 mod resolver;
 mod version;
+mod gemfilelock;
 
 use compact_index_client::CompactIndexClient;
 use executor::Executor;
@@ -11,7 +12,7 @@ use installer::GemInstaller;
 use resolver::Resolver;
 use serde::Deserialize;
 use tracing_subscriber::fmt::format::FmtSpan;
-use version::{RubyVersion, parse_req};
+use version::{RichReq, RubyVersion, parse_req};
 // use resolver::Resolver;
 
 use pubgrub::Ranges;
@@ -64,7 +65,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let gemfile = parse_gemfile();
 
-    let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle"))?
+    let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle")).await?
         .resolve_dependencies(
             gemfile
                 .dependencies
@@ -74,13 +75,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
         )
         .await?;
 
-    println!("gems: {}", gems.len());
+    // println!("gems: {}", gems.len());
 
     let mut resolver = Resolver::new();
 
     for (gem, versions) in gems {
         for v in versions {
-            let constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)> = v
+            let constraints: Vec<(String, RichReq, Vec<String>)> = v
                 .dependencies
                 .iter()
                 .map(|dep| {
@@ -96,7 +97,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     }
     let root_pkg = "root".to_string();
     let root_ver = RubyVersion::new(0, 0, 0);
-    let root_constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)> = gemfile
+    let root_constraints: Vec<(String, RichReq, Vec<String>)> = gemfile
         .dependencies
         .into_iter()
         .map(|gem| {
@@ -111,13 +112,38 @@ async fn main() -> Result<(), Box<dyn Error>> {
     resolver.add_dependencies(root_pkg, root_ver, root_constraints);
 
     let solution = resolver.resolve().expect("dependency resolution failed");
+    let mut solution_vec: Vec<(String, RubyVersion)> = solution
+        .iter()
+        .map(|(k, v)| (k.clone(), v.clone()))
+        .collect();
 
-    for (pkg, ver) in &solution {
-        println!("  - {} ({})", pkg, ver);
+    // write file to Gemfile.lock
+
+
+    println!("GEM");
+    println!("  remote: https://rubygems.org/");
+    println!("  specs:");
+    solution_vec.sort_by(|a, b| a.0.cmp(&b.0));
+    for (pkg, ver) in &solution_vec {
+        if pkg == "root" {
+            continue;
+        }
+        println!("    {} ({})", pkg, ver);
         if let Some(deps) = resolver.get_dependencies_str(pkg, ver) {
             for (dg, dr) in deps {
-                println!("    - {} ({})", dg, dr.join(", "))
+                println!("      {} ({})", dg, dr.join(", "))
             }
+        }
+    }
+    println!("\nPLATFORMS\n  ruby");
+    println!("\nDEPENDENCIES:");
+    if let Some(deps) =
+        resolver.get_dependencies_str(&"root".to_string(), &RubyVersion::new(0, 0, 0))
+    {
+        let mut deps = deps.clone();
+        deps.sort_by(|a, b| a.0.cmp(&b.0));
+        for (dg, dr) in deps {
+            println!("  {} ({})", dg, dr.join(", "))
         }
     }
 
@@ -156,7 +182,6 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     // Compact Index Clientを初期化
     println!("Initializing Compact Index Client...");
-    let client = CompactIndexClient::new(api_url, &bundle_dir)?;
 
     // 依存関係を解決
     // // println!("Resolving dependencies...");

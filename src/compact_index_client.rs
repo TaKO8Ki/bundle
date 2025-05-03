@@ -1,4 +1,5 @@
 use futures::stream::FuturesUnordered;
+use futures::{Stream, StreamExt};
 use lazy_static::lazy_static;
 use md5::{Digest as Md5Digest, Md5};
 use pubgrub::Ranges;
@@ -7,8 +8,9 @@ use reqwest::header::{ETAG, HeaderMap, HeaderValue, IF_NONE_MATCH, RANGE};
 use reqwest::{Client, Response};
 use sha2::{Digest as Sha2Digest, Sha256};
 use std::collections::{HashMap, HashSet, VecDeque};
-use std::fs::{self, File, read_dir};
-use std::io::{self, BufRead, BufReader, Cursor, Read, SeekFrom, Write};
+use tokio::fs::{self, File};
+use tokio::io::{AsyncBufRead, AsyncBufReadExt, BufReader, BufWriter};
+use std::io::{self, BufRead, Cursor, Read, SeekFrom, Write};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use thiserror::Error;
@@ -17,7 +19,7 @@ use tokio::task::JoinHandle;
 use tracing::{Level, debug, instrument};
 use url::Url;
 
-use crate::version::{RubyVersion, Segment, parse_req};
+use crate::version::{RichReq, RubyVersion, Segment, parse_req};
 
 #[derive(Error, Debug)]
 pub enum CompactIndexError {
@@ -50,7 +52,7 @@ pub struct GemVersion {
 #[derive(Debug, Clone)]
 pub struct GemDependency {
     pub name: String,
-    pub requirement: Ranges<RubyVersion>,
+    pub requirement: RichReq,
     pub requirement_str: Vec<String>,
 }
 
@@ -68,7 +70,7 @@ pub enum InfoSource {
 }
 
 impl CompactIndexClient {
-    pub fn new(base_url: &str, bundle_dir: &Path) -> Result<Self> {
+    pub async fn new(base_url: &str, bundle_dir: &Path) -> Result<Self> {
         let url = Url::parse(base_url)?;
 
         let cache_slug = Self::cache_slug_for_url(&url)?;
@@ -77,9 +79,9 @@ impl CompactIndexClient {
             .join("compact_index")
             .join(cache_slug);
 
-        fs::create_dir_all(&cache_dir)?;
-        fs::create_dir_all(&cache_dir.join("info"))?;
-        fs::create_dir_all(&cache_dir.join("info-etags"))?;
+        fs::create_dir_all(&cache_dir).await?;
+        fs::create_dir_all(&cache_dir.join("info")).await?;
+        fs::create_dir_all(&cache_dir.join("info-etags")).await?;
 
         Ok(Self {
             base_url: url,
@@ -200,12 +202,15 @@ impl CompactIndexClient {
         self.update_cache(&versions_url, &versions_path, &versions_path)
             .await?;
 
-        let content_lines = BufReader::new(File::open(versions_path)?)
-            .lines()
-            .flatten()
-            .skip_while(|line| *line != "---")
+        // use futures::{StreamExt, TryStreamExt};
+        use tokio_stream::wrappers::LinesStream;
+
+        let mut content_lines = LinesStream::new(BufReader::new(File::open(versions_path).await?).lines())
+            .filter_map(|r| futures::future::ready(r.ok()))
+            .skip_while(|line| futures::future::ready(line != "---"))
             .skip(1);
-        Ok(parse_version(content_lines, gems))
+        let result = parse_version(&mut content_lines, gems).await?;
+        Ok(result)
     }
 
     #[instrument(level = Level::DEBUG, skip_all)]
@@ -236,15 +241,16 @@ impl CompactIndexClient {
 
         debug!("Reading info file for gem: {}", gem_name);
 
-        let file: Box<dyn BufRead> = match file {
+        let file: Box<dyn AsyncBufRead + Unpin + Send> = match file {
             Some(InfoSource::File(f)) => Box::new(BufReader::new(f)),
             Some(InfoSource::Mem(c)) => Box::new(BufReader::new(c)),
             None => {
                 return Ok(vec![]);
             }
         };
+        let mut lines = file.lines();
 
-        for raw in BufReader::new(file).lines().flatten() {
+        while let Some(raw) = lines.next_line().await? {
             if raw.starts_with("---") {
                 continue;
             }
@@ -301,11 +307,11 @@ impl CompactIndexClient {
         let mut headers = HeaderMap::new();
 
         if etag_path.exists() {
-            if let Some(etag) = self.read_etag(etag_path)? {
+            if let Some(etag) = self.read_etag(etag_path).await? {
                 headers.insert(IF_NONE_MATCH, HeaderValue::from_str(&etag).unwrap());
             }
 
-            if let Ok(metadata) = fs::metadata(etag_path) {
+            if let Ok(metadata) = fs::metadata(etag_path).await {
                 if metadata.len() > 0 {
                     let range = format!("bytes={}-", metadata.len() - 1);
                     headers.insert(RANGE, HeaderValue::from_str(&range).unwrap());
@@ -346,18 +352,20 @@ impl CompactIndexClient {
         let is_partial = response.status() == reqwest::StatusCode::PARTIAL_CONTENT;
 
         if let Some(etag) = response.headers().get(ETAG) {
-            self.write_etag(etag_path, etag.to_str().unwrap())?;
+            self.write_etag(etag_path, etag.to_str().unwrap()).await?;
         }
 
         let body = response.bytes().await?;
+
+        use tokio::io::AsyncWriteExt;
 
         let file = if is_partial && cache_path.exists() {
             let mut file = fs::OpenOptions::new()
                 .append(true)
                 .read(true)
-                .open(cache_path)?;
+                .open(cache_path).await?;
 
-            file.write_all(&body[1..])?;
+            file.write_all(&body[1..]).await?;
             InfoSource::File(file)
         } else {
             // If the body is empty, we don't create a new file.
@@ -367,35 +375,38 @@ impl CompactIndexClient {
                     return Ok(None);
                 }
             }
-            let mut file = File::create(cache_path)?;
-            file.write_all(&body)?;
+            let file = File::create(cache_path).await?;
+            let mut w = BufWriter::new(file);
+            w.write_all(&body).await?;
             InfoSource::Mem(Cursor::new(body.to_vec()))
         };
 
         Ok(Some(file))
     }
 
-    fn read_etag(&self, file_path: &Path) -> Result<Option<String>> {
+    async fn read_etag(&self, file_path: &Path) -> Result<Option<String>> {
         let etag_path = file_path.with_extension("etag");
 
         if etag_path.exists() {
-            let etag = fs::read_to_string(&etag_path)?;
+            let etag = fs::read_to_string(&etag_path).await?;
             Ok(Some(etag))
         } else {
             Ok(None)
         }
     }
 
-    fn write_etag(&self, file_path: &Path, etag: &str) -> Result<()> {
+    async fn write_etag(&self, file_path: &Path, etag: &str) -> Result<()> {
         let etag_path = file_path.with_extension("etag");
-        fs::write(&etag_path, etag)?;
+        fs::write(&etag_path, etag).await?;
         Ok(())
     }
 
-    fn md5_checksum(&self, file_path: &Path) -> Result<String> {
-        let mut file = File::open(file_path)?;
+    async fn md5_checksum(&self, file_path: &Path) -> Result<String> {
+        use tokio::io::AsyncReadExt;
+
+        let mut file = File::open(file_path).await?;
         let mut buffer = Vec::new();
-        file.read_to_end(&mut buffer)?;
+        file.read_to_end(&mut buffer).await?;
 
         let digest = Md5::digest(&buffer);
         let result = format!("{:x}", digest);
@@ -405,14 +416,14 @@ impl CompactIndexClient {
 }
 
 #[instrument(skip_all)]
-fn parse_version<'a>(
-    lines: impl Iterator<Item = String>,
+async fn parse_version<S>(
+    mut lines: S,
     gems: Vec<String>,
-) -> HashMap<String, Vec<RubyVersion>> {
+) -> Result<HashMap<String, Vec<RubyVersion>>> where
+S: Stream<Item = String> + Unpin {
     let mut map: HashMap<String, Vec<RubyVersion>> = HashMap::new();
-
     let gems_set: HashSet<String> = gems.into_iter().collect();
-    for line in lines {
+    while let Some(line) = lines.next().await {
         let parts: Vec<&str> = line.split_whitespace().collect();
         if parts.len() < 2 {
             continue;
@@ -425,7 +436,7 @@ fn parse_version<'a>(
             map.entry(parts[0].to_string()).or_default().push(rv);
         }
     }
-    map
+    Ok(map)
 }
 
 #[cfg(test)]

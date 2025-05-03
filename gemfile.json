@@ -3399,6 +3399,19 @@
       "branch": null
     },
     {
+      "name": "gitlab-kas-grpc",
+      "requirement": "~> 17.9.0.pre.rc2",
+      "groups": [
+        "default"
+      ],
+      "source": null,
+      "git": null,
+      "platforms": [
+
+      ],
+      "branch": null
+    },
+    {
       "name": "grpc",
       "requirement": "= 1.63.0",
       "groups": [

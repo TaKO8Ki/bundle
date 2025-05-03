@@ -12,10 +12,10 @@ use tracing::{Level, error, instrument};
 // use std::fmt;
 // use thiserror::Error;
 
-use crate::version::RubyVersion;
+use crate::version::{RichReq, RubyVersion};
 
 pub struct Resolver {
-    dependency_provider: OfflineDependencyProvider<String, Ranges<RubyVersion>>,
+    dependency_provider: OfflineDependencyProvider<String, RichReq>,
     lock_meta: HashMap<(String, RubyVersion), Vec<(String, Vec<String>)>>,
 }
 
@@ -28,7 +28,7 @@ impl Resolver {
     }
 
     #[instrument(level = Level::INFO, skip_all)]
-    pub fn resolve(&self) -> anyhow::Result<Vec<(String, RubyVersion)>> {
+    pub fn resolve(&self) -> anyhow::Result<HashMap<String, RubyVersion>> {
         let root_pkg = "root".to_string();
         let root_ver = RubyVersion::new(0, 0, 0);
         Ok(resolve(&self.dependency_provider, root_pkg, root_ver)?
@@ -41,7 +41,7 @@ impl Resolver {
         &self,
         package: &String,
         version: &RubyVersion,
-    ) -> Option<DependencyConstraints<String, Ranges<RubyVersion>>> {
+    ) -> Option<DependencyConstraints<String, RichReq>> {
         match self.dependency_provider.get_dependencies(package, version) {
             Ok(Dependencies::Available(deps)) => Some(deps),
             Ok(Dependencies::Unavailable(err)) => {
@@ -68,7 +68,7 @@ impl Resolver {
         &mut self,
         gem: String,
         version: RubyVersion,
-        constraints: Vec<(String, Ranges<RubyVersion>, Vec<String>)>,
+        constraints: Vec<(String, RichReq, Vec<String>)>,
     ) {
         self.dependency_provider.add_dependencies(
             gem.clone(),
