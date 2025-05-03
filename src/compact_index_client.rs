@@ -8,13 +8,13 @@ use reqwest::header::{ETAG, HeaderMap, HeaderValue, IF_NONE_MATCH, RANGE};
 use reqwest::{Client, Response};
 use sha2::{Digest as Sha2Digest, Sha256};
 use std::collections::{HashMap, HashSet, VecDeque};
-use tokio::fs::{self, File};
-use tokio::io::{AsyncBufRead, AsyncBufReadExt, BufReader, BufWriter};
 use std::io::{self, BufRead, Cursor, Read, SeekFrom, Write};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use thiserror::Error;
-use tokio::sync::Semaphore;
+use tokio::fs::{self, File};
+use tokio::io::{AsyncBufRead, AsyncBufReadExt, BufReader, BufWriter};
+use tokio::sync::{OwnedSemaphorePermit, Semaphore};
 use tokio::task::JoinHandle;
 use tracing::{Level, debug, instrument};
 use url::Url;
@@ -86,7 +86,7 @@ impl CompactIndexClient {
         Ok(Self {
             base_url: url,
             cache_dir,
-            http_client: Client::new(),
+            http_client: Client::builder().pool_max_idle_per_host(20).build()?,
             limiter: Arc::new(Semaphore::new(num_cpus::get())),
         })
     }
@@ -140,19 +140,33 @@ impl CompactIndexClient {
         let shared_client = Arc::new(self.clone());
 
         // Function to spawn a fetch task; ONLY place where spawn happens
-        let spawn_fetch = |client: Arc<CompactIndexClient>, gem: String| -> JoinHandle<_> {
+        let spawn_fetch = |client: Arc<CompactIndexClient>,
+                           gem: String,
+                           permit: OwnedSemaphorePermit|
+         -> JoinHandle<_> {
             tokio::spawn(async move {
                 let versions = client.info(&gem).await?;
+                drop(permit);
                 Ok::<_, CompactIndexError>((gem, versions))
             })
         };
 
+        let sem = Arc::clone(&self.limiter);
+
         // initial fill (schedule unique downloads)
         let mut scheduled = HashSet::<String>::new();
         while let Some(name) = queue.pop_front() {
+            let permit = match sem.clone().try_acquire_owned() {
+                Ok(p) => p,
+                Err(_) => {
+                    queue.push_front(name);
+                    continue;
+                }
+            };
+
             if !visited.contains(&name) && !scheduled.contains(&name) {
                 scheduled.insert(name.clone());
-                tasks.push(spawn_fetch(Arc::clone(&shared_client), name));
+                tasks.push(spawn_fetch(Arc::clone(&shared_client), name, permit));
             }
             if tasks.len() >= shared_client.limiter.available_permits() {
                 break;
@@ -174,14 +188,17 @@ impl CompactIndexClient {
             }
 
             // refill window
-            while tasks.len() < shared_client.limiter.available_permits() {
-                if let Some(n) = queue.pop_front() {
-                    if !visited.contains(&n) && !scheduled.contains(&n) {
-                        scheduled.insert(n.clone());
-                        tasks.push(spawn_fetch(Arc::clone(&shared_client), n));
-                    }
-                } else {
-                    break;
+            while let Some(n) = queue.pop_front() {
+                if !visited.contains(&n) && !scheduled.contains(&n) {
+                    let permit = match sem.clone().try_acquire_owned() {
+                        Ok(p) => p,
+                        Err(_) => {
+                            queue.push_front(n);
+                            break;
+                        }
+                    };
+                    scheduled.insert(n.clone());
+                    tasks.push(spawn_fetch(Arc::clone(&shared_client), n, permit));
                 }
             }
         }
@@ -205,10 +222,11 @@ impl CompactIndexClient {
         // use futures::{StreamExt, TryStreamExt};
         use tokio_stream::wrappers::LinesStream;
 
-        let mut content_lines = LinesStream::new(BufReader::new(File::open(versions_path).await?).lines())
-            .filter_map(|r| futures::future::ready(r.ok()))
-            .skip_while(|line| futures::future::ready(line != "---"))
-            .skip(1);
+        let mut content_lines =
+            LinesStream::new(BufReader::new(File::open(versions_path).await?).lines())
+                .filter_map(|r| futures::future::ready(r.ok()))
+                .skip_while(|line| futures::future::ready(line != "---"))
+                .skip(1);
         let result = parse_version(&mut content_lines, gems).await?;
         Ok(result)
     }
@@ -363,7 +381,8 @@ impl CompactIndexClient {
             let mut file = fs::OpenOptions::new()
                 .append(true)
                 .read(true)
-                .open(cache_path).await?;
+                .open(cache_path)
+                .await?;
 
             file.write_all(&body[1..]).await?;
             InfoSource::File(file)
@@ -378,6 +397,7 @@ impl CompactIndexClient {
             let file = File::create(cache_path).await?;
             let mut w = BufWriter::new(file);
             w.write_all(&body).await?;
+            w.flush().await?;
             InfoSource::Mem(Cursor::new(body.to_vec()))
         };
 
@@ -419,8 +439,10 @@ impl CompactIndexClient {
 async fn parse_version<S>(
     mut lines: S,
     gems: Vec<String>,
-) -> Result<HashMap<String, Vec<RubyVersion>>> where
-S: Stream<Item = String> + Unpin {
+) -> Result<HashMap<String, Vec<RubyVersion>>>
+where
+    S: Stream<Item = String> + Unpin,
+{
     let mut map: HashMap<String, Vec<RubyVersion>> = HashMap::new();
     let gems_set: HashSet<String> = gems.into_iter().collect();
     while let Some(line) = lines.next().await {
