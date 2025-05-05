@@ -193,6 +193,10 @@ impl RubyVersion {
         self.segments.iter().any(|s| matches!(s, Segment::Text(_)))
     }
 
+    pub fn is_platform(&self) -> bool {
+        self.platform_segment.is_some()
+    }
+
     pub fn bump(&self) -> Self {
         let raw = self.to_string();
         let mut segments: Vec<String> = raw.split('.').map(|s| s.to_string()).collect();
@@ -319,11 +323,6 @@ pub fn parse_req(text: &str, separator: &str) -> (RichReq, Vec<String>) {
                 if next.segments.len() > 2 {
                     next = next.bump();
                 } else {
-                    // single-segment case: bump major
-                    // if next.segments.len() == 0 {
-                    //     println!("Parsed version: {}", text);
-                    // }
-
                     if let Segment::Numeric(maj) = &mut next.segments[0] {
                         *maj += 1;
                     }
@@ -578,6 +577,23 @@ mod tests {
             ],
             platform_segment: None
         }));
+    }
+
+    #[test]
+    fn aaa() {
+        let r: Ranges<RubyVersion> = parse_req("~> 1.1", ",").0.range;
+        let a = RubyVersion::parse("1.10.0");
+        let b = RubyVersion::parse("1.11.0");
+        assert!(r.contains(&a));
+        assert!(r.contains(&b));
+        assert!(a < b)
+    }
+
+    #[test]
+    fn bbb() {
+        let r: Ranges<RubyVersion> = parse_req("~> 1.6", ",").0.range;
+        let a = RubyVersion::parse("1.8.0");
+        assert!(r.contains(&a));
     }
 
     // #[test]

@@ -279,9 +279,10 @@ impl CompactIndexClient {
             let ver_str = parts.next().unwrap();
             let deps_str = parts.next().unwrap_or("");
             let rv = RubyVersion::parse(ver_str);
-            // if rv.is_prerelease() {
-            //     println!("pre: {rv}")
-            // }
+
+            if rv.is_platform() {
+                continue;
+            }
 
             let mut dependencies = Vec::new();
 
@@ -294,9 +295,6 @@ impl CompactIndexClient {
                     let name = dep_entry[..idx].to_string();
 
                     let req_str = dep_entry[idx + 1..].trim();
-                    if req_str == "~>" {
-                        println!("raw: {raw}, gem_name: {gem_name}");
-                    }
                     let (req, req_str) = parse_req(req_str, "&");
                     dependencies.push(GemDependency {
                         name: name.to_string(),

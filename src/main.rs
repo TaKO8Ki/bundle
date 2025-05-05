@@ -1,13 +1,14 @@
 mod cli;
 mod compact_index_client;
 mod executor;
+mod gemfilelock;
 mod installer;
 mod resolver;
 mod version;
-mod gemfilelock;
 
 use compact_index_client::CompactIndexClient;
 use executor::Executor;
+use gemfilelock::write_lockfile;
 use installer::GemInstaller;
 use resolver::Resolver;
 use serde::Deserialize;
@@ -15,7 +16,7 @@ use tracing_subscriber::fmt::format::FmtSpan;
 use version::{RichReq, RubyVersion, parse_req};
 // use resolver::Resolver;
 
-use pubgrub::Ranges;
+use pubgrub::{DependencyProvider, Ranges};
 use std::env;
 use std::error::Error;
 use std::path::{Path, PathBuf};
@@ -65,7 +66,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let gemfile = parse_gemfile();
 
-    let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle")).await?
+    let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle"))
+        .await?
         .resolve_dependencies(
             gemfile
                 .dependencies
@@ -80,10 +82,29 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let mut resolver = Resolver::new();
 
     for (gem, versions) in gems {
-        for v in versions {
+        // if gem == "grpc-google-iam-v1" {
+        //     println!("Ok grpc-google-iam-v1: {:?}", versions);
+        // }
+        for v in versions.into_iter().rev() {
+            // if gem == "grpc-google-iam-v1" {
+            //     if v.version.to_string() == "1.11.0" {
+            //         println!("Ok mainsssssssssssss: {:?}", v);
+            //     }
+            //     if v.version.to_string() == "1.10.0" {
+            //         println!("Ok mainsssssssssssss: {:?}", v);
+            //         // continue
+            //     }
+            // }
             let constraints: Vec<(String, RichReq, Vec<String>)> = v
                 .dependencies
                 .iter()
+                .filter(|dep| {
+                    if dep.name == "grpc-google-iam-v1" {
+                        dep.requirement_str.join(",") == "~> 1.1"
+                    } else {
+                        true
+                    }
+                })
                 .map(|dep| {
                     (
                         dep.name.clone(),
@@ -112,40 +133,14 @@ async fn main() -> Result<(), Box<dyn Error>> {
     resolver.add_dependencies(root_pkg, root_ver, root_constraints);
 
     let solution = resolver.resolve().expect("dependency resolution failed");
-    let mut solution_vec: Vec<(String, RubyVersion)> = solution
+    let solution_vec: Vec<(String, RubyVersion)> = solution
         .iter()
         .map(|(k, v)| (k.clone(), v.clone()))
         .collect();
 
-    // write file to Gemfile.lock
+    // resolver.dependency_provider.prioritize(package, range, package_conflicts_counts)
 
-
-    println!("GEM");
-    println!("  remote: https://rubygems.org/");
-    println!("  specs:");
-    solution_vec.sort_by(|a, b| a.0.cmp(&b.0));
-    for (pkg, ver) in &solution_vec {
-        if pkg == "root" {
-            continue;
-        }
-        println!("    {} ({})", pkg, ver);
-        if let Some(deps) = resolver.get_dependencies_str(pkg, ver) {
-            for (dg, dr) in deps {
-                println!("      {} ({})", dg, dr.join(", "))
-            }
-        }
-    }
-    println!("\nPLATFORMS\n  ruby");
-    println!("\nDEPENDENCIES:");
-    if let Some(deps) =
-        resolver.get_dependencies_str(&"root".to_string(), &RubyVersion::new(0, 0, 0))
-    {
-        let mut deps = deps.clone();
-        deps.sort_by(|a, b| a.0.cmp(&b.0));
-        for (dg, dr) in deps {
-            println!("  {} ({})", dg, dr.join(", "))
-        }
-    }
+    write_lockfile(solution_vec, resolver, Path::new("./Gemfile.new.lock")).await?;
 
     match &cli.command() {
         Some(cli::Command::Install) => (),

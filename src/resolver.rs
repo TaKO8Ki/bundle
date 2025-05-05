@@ -15,7 +15,7 @@ use tracing::{Level, error, instrument};
 use crate::version::{RichReq, RubyVersion};
 
 pub struct Resolver {
-    dependency_provider: OfflineDependencyProvider<String, RichReq>,
+    pub dependency_provider: OfflineDependencyProvider<String, RichReq>,
     lock_meta: HashMap<(String, RubyVersion), Vec<(String, Vec<String>)>>,
 }
 
@@ -394,3 +394,387 @@ impl Resolver {
 //         Ok(result)
 //     }
 // }
+
+#[cfg(test)]
+mod tests {
+    use std::{cmp::Reverse, convert::Infallible, path::Path};
+
+    use pubgrub::{
+        Dependencies, DependencyProvider, OfflineDependencyProvider, PackageResolutionStatistics,
+        VersionSet, resolve,
+    };
+
+    use crate::{
+        compact_index_client::CompactIndexClient,
+        parse_gemfile,
+        resolver::Resolver,
+        version::{self, RichReq, RubyVersion, parse_req},
+    };
+
+    // #[test]
+    // fn test_resolve() {
+    //     let mut p: OfflineDependencyProvider<String, RichReq> = OfflineDependencyProvider::new();
+    //     p.add_dependencies(
+    //         "a".to_string(),
+    //         RubyVersion::parse("1.11.0"),
+    //         vec![("c".to_string(), parse_req("~> 1.7.0", ",").0)],
+    //     );
+    //     p.add_dependencies(
+    //         "a".to_string(),
+    //         RubyVersion::parse("1.10.0"),
+    //         vec![("c".to_string(), parse_req("~> 1.4", ",").0)],
+    //     );
+    //     p.add_dependencies(
+    //         "c".to_string(),
+    //         RubyVersion::parse("1.7.0"),
+    //         vec![("d".to_string(), parse_req("~> 1.7", ",").0)],
+    //     );
+    //     p.add_dependencies(
+    //         "c".to_string(),
+    //         RubyVersion::parse("1.8.0"),
+    //         vec![("d".to_string(), parse_req("~> 1.20", ",").0)],
+    //     );
+    //     p.add_dependencies("d".to_string(), RubyVersion::parse("1.20.0"), vec![]);
+    //     p.add_dependencies(
+    //         "e".to_string(),
+    //         RubyVersion::parse("1.0.0"),
+    //         vec![("d".to_string(), parse_req("~> 1.15", ",").0)],
+    //     );
+    //     p.add_dependencies(
+    //         "root".to_string(),
+    //         RubyVersion::new(0, 0, 0),
+    //         vec![
+    //             ("a".to_string(), parse_req("~> 1.1", ",").0),
+    //             ("e".to_string(), parse_req(">= 0.20.0,< 2.a", ",").0),
+    //         ],
+    //     );
+    //     let solutions = resolve(&p, "root".to_string(), RubyVersion::new(0, 0, 0)).unwrap();
+    //     let versions: Vec<_> = p.versions(&"a".to_string()).unwrap().collect();
+    //     assert_eq!(
+    //         versions,
+    //         vec![&RubyVersion::new(1, 10, 0), &RubyVersion::new(1, 11, 0),]
+    //     );
+    //     assert_eq!(
+    //         Some(RubyVersion::new(1, 10, 0)),
+    //         p.choose_version(&"a".to_string(), &parse_req("~> 1.1", ",").0)
+    //             .unwrap()
+    //     );
+    //     assert_eq!(solutions.get("a"), Some(&RubyVersion::new(1, 10, 0)));
+    // }
+
+    #[test]
+    fn bundler_like_resolution() {
+        struct BundlerOfflineDependencyProvider {
+            dependency_provider: OfflineDependencyProvider<String, RichReq>,
+        }
+
+        impl BundlerOfflineDependencyProvider {
+            fn add_dependencies(
+                &mut self,
+                package: String,
+                version: RubyVersion,
+                dependencies: Vec<(String, RichReq)>,
+            ) {
+                self.dependency_provider
+                    .add_dependencies(package, version, dependencies);
+            }
+        }
+
+        impl DependencyProvider for BundlerOfflineDependencyProvider {
+            type P = String;
+            type V = <RichReq as VersionSet>::V;
+            type VS = RichReq;
+            type M = String;
+
+            type Err = Infallible;
+
+            #[inline]
+            fn choose_version(
+                &self,
+                package: &Self::P,
+                range: &Self::VS,
+            ) -> Result<Option<Self::V>, Infallible> {
+                let mut versions = self
+                    .dependency_provider
+                    .versions(package)
+                    .map(|v| v.filter(|v| range.contains(v)).collect::<Vec<_>>())
+                    .unwrap_or_default();
+                versions.sort_by(|a, b| b.cmp(a));
+                if let Some(v) = versions.first() {
+                    if package == "grpc-google-iam-v1" {
+                        println!(
+                            "package: {}, choose_version: {}, versions: {:?}",
+                            package, v, versions
+                        );
+                    }
+                    Ok(Some((*v).clone()))
+                } else {
+                    Ok(None)
+                }
+                // Ok(
+                //     .and_then(|versions| {
+                //         versions.keys().rev().find(|v| range.contains(v)).cloned()
+                //     }))
+            }
+
+            type Priority = (u32, Reverse<usize>);
+
+            #[inline]
+            fn prioritize(
+                &self,
+                package: &Self::P,
+                range: &Self::VS,
+                package_statistics: &PackageResolutionStatistics,
+            ) -> Self::Priority {
+                self.dependency_provider
+                    .prioritize(package, range, package_statistics)
+            }
+
+            #[inline]
+            fn get_dependencies(
+                &self,
+                package: &Self::P,
+                version: &Self::V,
+            ) -> Result<Dependencies<Self::P, Self::VS, Self::M>, Infallible> {
+                self.dependency_provider.get_dependencies(package, version)
+            }
+        }
+
+        let mut p = BundlerOfflineDependencyProvider {
+            dependency_provider: OfflineDependencyProvider::new(),
+        };
+
+        /* ------ grpc-google-iam-v1 ------ */
+        // 1.10.0
+        p.add_dependencies(
+            "google-cloud-artifact_registry-v1".into(),
+            RubyVersion::parse("0.11.0"),
+            vec![
+                ("grpc-google-iam-v1".into(), parse_req("~> 1.1", ",").0),
+                ("gapic-common".into(), parse_req(">= 0.20.0, < 2.a", ",").0),
+            ],
+        );
+
+        p.add_dependencies(
+            "gapic-common".into(),
+            RubyVersion::parse("1.0.0"),
+            vec![
+                (
+                    "googleapis-common-protos-types".into(),
+                    parse_req("~> 1.15", ",").0,
+                ),
+                (
+                    "googleapis-common-protos".into(),
+                    parse_req("~> 1.6", ",").0,
+                ),
+            ],
+        );
+
+        // 1.11.0
+
+        p.add_dependencies(
+            "grpc-google-iam-v1".into(),
+            RubyVersion::parse("1.10.0"),
+            vec![
+                ("google-protobuf".into(), parse_req(">= 3.18, < 5.a", ",").0),
+                (
+                    "googleapis-common-protos".into(),
+                    parse_req("~> 1.4", ",").0,
+                ),
+                ("grpc".into(), parse_req("~> 1.41", ",").0),
+            ],
+        );
+
+        p.add_dependencies(
+            "grpc-google-iam-v1".into(),
+            RubyVersion::parse("1.8.0"),
+            vec![
+                ("google-protobuf".into(), parse_req(">= 3.18, < 5.a", ",").0),
+                (
+                    "googleapis-common-protos".into(),
+                    parse_req("~> 1.4", ",").0,
+                ),
+                ("grpc".into(), parse_req("~> 1.41", ",").0),
+            ],
+        );
+
+        p.add_dependencies(
+            "grpc-google-iam-v1".into(),
+            RubyVersion::parse("1.11.0"),
+            vec![
+                ("google-protobuf".into(), parse_req(">= 3.18, < 5.a", ",").0),
+                (
+                    "googleapis-common-protos".into(),
+                    parse_req("~> 1.5.0", ",").0,
+                ),
+                ("grpc".into(), parse_req("~> 1.41", ",").0),
+            ],
+        );
+
+        /* ------ googleapis-common-protos ------ */
+        p.add_dependencies(
+            "googleapis-common-protos".into(),
+            RubyVersion::parse("1.7.0"),
+            vec![
+                ("google-protobuf".into(), parse_req(">= 3.18, < 5.a", ",").0),
+                (
+                    "googleapis-common-protos-types".into(),
+                    parse_req("~> 1.7", ",").0,
+                ),
+                ("grpc".into(), parse_req("~> 1.41", ",").0),
+            ],
+        );
+        p.add_dependencies(
+            "googleapis-common-protos".into(),
+            RubyVersion::parse("1.8.0"),
+            vec![
+                ("google-protobuf".into(), parse_req(">= 3.18, < 5.a", ",").0),
+                (
+                    "googleapis-common-protos-types".into(),
+                    parse_req("~> 1.20", ",").0,
+                ),
+                ("grpc".into(), parse_req("~> 1.41", ",").0),
+            ],
+        );
+
+        p.add_dependencies(
+            "googleapis-common-protos-types".into(),
+            RubyVersion::parse("1.20.0"),
+            vec![],
+        );
+        p.add_dependencies(
+            "google-protobuf".into(),
+            RubyVersion::parse("4.30.2"),
+            vec![],
+        );
+        p.add_dependencies("grpc".into(), RubyVersion::parse("1.71.0"), vec![]);
+
+        /* ------ root ------ */
+        p.add_dependencies(
+            "root".into(),
+            RubyVersion::parse("0.0.0"),
+            vec![(
+                "google-cloud-artifact_registry-v1".into(),
+                parse_req("~> 0.11.0", ",").0,
+            )],
+        );
+
+        let sol = resolve(&p, "root".into(), RubyVersion::parse("0.0.0")).unwrap();
+
+        assert_eq!(
+            sol.get("grpc-google-iam-v1"),
+            Some(&RubyVersion::parse("1.11.0"))
+        );
+        assert_eq!(
+            sol.get("googleapis-common-protos"),
+            Some(&RubyVersion::parse("1.7.0"))
+        );
+    }
+
+    #[tokio::test]
+    async fn test_resolve_deps() -> anyhow::Result<()> {
+        let gemfile = parse_gemfile();
+        let gems = CompactIndexClient::new("https://rubygems.org/", Path::new(".newbundle"))
+            .await?
+            .resolve_dependencies(
+                gemfile
+                    .dependencies
+                    .iter()
+                    .map(|dep| dep.name.clone())
+                    .collect(),
+            )
+            .await?;
+
+        let mut resolver = Resolver::new();
+
+        for (gem, versions) in gems {
+            for v in versions.into_iter().rev() {
+                if gem == "googleapis-common-protos-types" && v.version.to_string() != "1.20.0" {
+                    continue;
+                }
+                if gem == "google-protobuf" && v.version.to_string() != "4.30.2" {
+                    continue;
+                }
+                if gem == "grpc" && v.version.to_string() != "1.71.0" {
+                    continue;
+                }
+                if gem == "googleapis-common-protos" {
+                    if v.version.to_string() == "1.8.0" || v.version.to_string() == "1.7.0" {
+                    } else {
+                        continue;
+                    }
+                }
+                if gem == "grpc-google-iam-v1" {
+                    if v.version.to_string() == "1.9.0"
+                        || v.version.to_string() == "1.8.0"
+                        || v.version.to_string() == "1.7.0"
+                        || v.version.to_string() == "0.6.11"
+                        || v.version.to_string() == "1.0.0"
+                    // || v.version.to_string() == "1.1.0"
+                    || v.version.to_string() == "1.1.1"
+                    {
+                        continue;
+                    } else {
+                    }
+                }
+                let constraints: Vec<(String, RichReq, Vec<String>)> = v
+                    .dependencies
+                    .iter()
+                    .map(|dep| {
+                        (
+                            dep.name.clone(),
+                            dep.requirement.clone(),
+                            dep.requirement_str.clone(),
+                        )
+                    })
+                    .collect();
+                resolver.add_dependencies(gem.clone(), v.version, constraints);
+            }
+        }
+        let root_pkg = "root".to_string();
+        let root_ver = RubyVersion::new(0, 0, 0);
+        let root_constraints: Vec<(String, RichReq, Vec<String>)> = gemfile
+            .dependencies
+            .into_iter()
+            .filter(|dep| {
+                dep.name != "gapic-common"
+                    && dep.name != "google-cloud-errors"
+                    && dep.name != "google-cloud-location"
+            })
+            .map(|gem| {
+                let (vs, req_str) = match gem.requirement {
+                    Some(req) => parse_req(&req, ","), // :contentReference[oaicite:1]{index=1}
+                    None => parse_req("*", ","),
+                };
+                (gem.name, vs, req_str)
+            })
+            .collect();
+        resolver.add_dependencies(root_pkg, root_ver, root_constraints);
+
+        let versions: Vec<_> = resolver
+            .dependency_provider
+            .versions(&"grpc-google-iam-v1".to_string())
+            .unwrap()
+            .collect();
+
+        // assert_eq!(
+        //     versions,
+        //     vec![
+        //         &RubyVersion::parse("1.11.0"),
+        //         &RubyVersion::parse("1.10.0"),
+        //         &RubyVersion::parse("1.9.0"),
+        //         &RubyVersion::parse("1.1.1"),
+        //         &RubyVersion::parse("1.1.0"),
+        //         &RubyVersion::parse("1.0.0"),
+        //         &RubyVersion::parse("0.6.8"),
+        //     ]
+        // );
+
+        let solution = resolver.resolve().expect("dependency resolution failed");
+        assert_eq!(
+            solution.get("grpc-google-iam-v1"),
+            Some(&RubyVersion::parse("1.11.0"))
+        );
+        Ok(())
+    }
+}
