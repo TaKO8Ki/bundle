@@ -2,7 +2,7 @@
 
 # [WIP] bundle
 
-A blazing fast Rust Bundler and RubyGems, written in Rust
+A blazing fast Ruby Bundler and RubyGems, written in Rust
 
 </div>
 
