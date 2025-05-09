@@ -1,0 +1,3 @@
+[submodule "rubygems"]
+	path = rubygems
+	url = https://github.com/TaKO8Ki/rubygems.git
