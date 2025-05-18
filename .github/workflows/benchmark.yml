@@ -1,0 +1,56 @@
+name: Benchmark
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install hyperfine
+        run: |
+          wget https://github.com/sharkdp/hyperfine/releases/download/v1.19.0/hyperfine_1.19.0_amd64.deb
+          sudo dpkg -i hyperfine_1.19.0_amd64.deb
+    
+      - name: Build
+        run: cargo build --release
+
+      - name: Run hyperfine benchmark
+        run: |
+          hyperfine --warmup 3 \
+                    --prepare 'rm -rf Gemfile.lock' 'BUNDLE_FORCE_RUBY_PLATFORM=true bundle lock' \
+                    --prepare 'rm -rf Gemfile.new.lock .newbundle' './target/release/bundle lock' \
+                    --export-markdown benchmark.md
+    
+      - name: Comment results with gh
+        # if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr comment "$PR_NUMBER" --body-file benchmark.md
